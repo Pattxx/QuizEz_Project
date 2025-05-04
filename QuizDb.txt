@@ -1,0 +1,64 @@
+PRAGMA foreign_keys = ON;
+
+-- Tabela użytkowników
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    is_guest BOOLEAN DEFAULT 0
+);
+
+-- Tabela quizów
+CREATE TABLE quizzes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    category TEXT,
+    difficulty TEXT,
+    time_limit INTEGER,
+    creator_id INTEGER,
+    FOREIGN KEY (creator_id) REFERENCES users(id) ON DELETE SET NULL
+);
+
+-- Tabela pytań
+CREATE TABLE questions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    quiz_id INTEGER NOT NULL,
+    text TEXT NOT NULL,
+    FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE
+);
+
+-- Tabela odpowiedzi
+CREATE TABLE answers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    question_id INTEGER NOT NULL,
+    text TEXT NOT NULL,
+    is_correct BOOLEAN NOT NULL CHECK (is_correct IN (0, 1)),
+    FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE
+);
+
+-- Tabela wyników quizów
+CREATE TABLE quiz_results (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    quiz_id INTEGER NOT NULL,
+    score INTEGER,
+    total_questions INTEGER,
+    correct_answers INTEGER,
+    percentage REAL,
+    date_taken TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE
+);
+
+--tabela profilu użytkownika - OPCJONALNE!
+CREATE TABLE user_profile (
+    user_id INTEGER PRIMARY KEY,
+    display_name TEXT,
+    avatar_path TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Indeksy (pomocnicze)
+CREATE INDEX idx_username ON users(username);
+CREATE INDEX idx_quiz_results_user ON quiz_results(user_id);
+CREATE INDEX idx_quiz_results_quiz ON quiz_results(quiz_id);
