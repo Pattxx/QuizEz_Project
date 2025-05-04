@@ -76,3 +76,23 @@ Wykorzystane technologie:
 •	Maven – budowanie projektu
 
 •	GitHub (Git) – kontrola wersji
+
+
+Dostępne kategorie quizów:
+
+• Gry wideo
+
+• Geografia
+
+• Religie świata
+
+• Filmy i seriale
+
+• Historia świata
+
+• Kosmos
+
+• Nauki ścisłe
+
+• Nieokreślona
+
