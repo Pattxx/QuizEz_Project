@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<!--fx:controller="org.example.quizez.TestController needs to be attached-->
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.quizez.TestController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.LoginController">
+   <children>
+      <PasswordField fx:id="PasswordInputField" layoutX="225.0" layoutY="194.0" promptText="Hasło" />
+      <TextField layoutX="225.0" layoutY="149.0" promptText="Nazwa użytkownika" />
+      <Button fx:id="LogInButton" onAction="#onLogInButtonClick" layoutX="275.0" layoutY="278.0" mnemonicParsing="false" text="Zaloguj" />
+      <Button fx:id="RegisterButton" onAction="#onRegisterButtonClick" layoutX="267.0" layoutY="388.0" mnemonicParsing="false" text="Zarejestruj" />
+      <CheckBox fx:id="IsGuestCheckBox" onAction="#onIsGuestCheckBoxClick" layoutX="243.0" layoutY="241.0" mnemonicParsing="false" text="Używaj jako gość" />
+      <Label layoutX="224.0" layoutY="361.0" text="Nie masz konta? Stwórz nowe!" />
+      <Label layoutX="246.0" layoutY="117.0" text="Zaloguj się na konto" />
+   </children>
+</AnchorPane>
