@@ -4,9 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.example.quizez.net.sqlitetuorial.Database;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class RegisterViewController {
     @FXML private TextField UsernameInputField;
@@ -67,11 +71,11 @@ public class RegisterViewController {
         }
 
         //username is taken
-//        if(isUsernameTaken(newUsername)){
-//            ErrorLabel.setVisible(true);
-//            ErrorLabel.setText("Nazwa jest już zajęta.");
-//            return;
-//        }
+        if(isUsernameTaken(newUsername)){
+            ErrorLabel.setVisible(true);
+            ErrorLabel.setText("Nazwa jest już zajęta.");
+            return;
+        }
 
         //reset errorlabel text
         ErrorLabel.setText("");
@@ -82,15 +86,28 @@ public class RegisterViewController {
     }
 
 
-//    private boolean isUsernameTaken(String usernametoCheck){
-//        String DbUsernameCheckQuery = "Select COUNT(*) FROM users WHERE username = ?";
-//
-//        try{
-//            Connection conn = Databas
-//
-//
-//
-//
-//        }catch{}
-//    }
+    private boolean isUsernameTaken(String usernametoCheck){
+
+        //here "?" acts like a placeholder value, we set it using stmt.SetString(...)
+        String DbUsernameCheckQuery = "Select COUNT(*) FROM users WHERE username = ?";
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt =conn.prepareStatement(DbUsernameCheckQuery)){
+
+            //using prepared statement, execute query with set value
+            // index "1" - juest refers to first "?" placeholder (can be multiple)
+            stmt.setString(1, usernametoCheck);
+            ResultSet rs = stmt.executeQuery();
+            
+            //this works like this:
+            //rs.next() moves "cursor" to the first (and only here) result row
+            //rs.getInt(1) gets value of first column - it's the count
+            //now if count is greater than then username exists in DB and returns true
+            return rs.next() && rs.getInt(1) > 0;
+
+        } catch (SQLException e){
+            System.err.println("Connection failed :(" + e.getMessage());
+            return true; //fail-safe
+        }
+    }
 }
