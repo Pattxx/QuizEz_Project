@@ -1,38 +1,87 @@
+# ===================== #
+#    Java Build Files   #
+# ===================== #
 target/
+*.class
+*.jar
+*.war
+*.ear
+
+# ===================== #
+#     Maven Wrapper     #
+# ===================== #
+!mvnw
+!mvnw.cmd
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+!.mvn/wrapper/maven-wrapper.properties
+!.mvn/wrapper/maven-wrapper-downloader.jar
 
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
+# ===================== #
+#   IntelliJ IDEA Files #
+# ===================== #
+
+# Ignore all .idea files except those useful for project configuration
+.idea/
+!.idea/codeStyles/
+!.idea/misc.xml
+!.idea/modules.xml
+
+# Ignore user-specific and volatile IntelliJ files
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/dictionaries
 *.iml
-*.ipr
 
-### Eclipse ###
-.apt_generated
+# ===================== #
+#    OS-Specific Files  #
+# ===================== #
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Linux
+*~
+
+# ===================== #
+#  Editor Config Files  #
+# ===================== #
+
+# VS Code
+.vscode/
+
+# ===================== #
+#     NetBeans Files    #
+# ===================== #
+nbbuild/
+nbproject/private/
+dist/
+nbdist/
+.nb-gradle/
+
+# ===================== #
+#     Eclipse Files     #
+# ===================== #
+.apt_generated/
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
 .sts4-cache
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+# ===================== #
+#     JetBrains Rider   #
+# ===================== #
+.idea/.idea.ReSharper
+.idea/.idea.DotSettings
 
-### VS Code ###
-.vscode/
-
-### Mac OS ###
-.DS_Store
+# ===================== #
+#    Logs & Temp Files  #
+# ===================== #
+*.log
+*.tmp
