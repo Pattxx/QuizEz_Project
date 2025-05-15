@@ -1,13 +1,17 @@
 package org.example.quizez;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.example.quizez.net.sqlitetuorial.Database;
 import javafx.scene.control.*;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -61,6 +65,21 @@ public class CategoryController implements Initializable {
             catch (SQLException e){
                 System.err.println("Connection failed :(" + e.getMessage());
             }
+        }
+    }
+    public void onButtonClick(ActionEvent event) {
+        try{
+            ///get stage from button
+            Stage stage = SceneManager.getStageFrom(event.getSource());
+            //now switch active scene to temp
+            SceneManager.switchScene(stage, "/org/example/quizez/main-view.fxml", null);
+
+        }catch(IOException e){
+            e.printStackTrace();
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setHeaderText(null);
+            alert1.setContentText("Scene change failed");
+            alert1.showAndWait();
         }
     }
 
