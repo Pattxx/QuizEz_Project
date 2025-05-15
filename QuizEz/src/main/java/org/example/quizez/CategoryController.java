@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CategoryController implements Initializable {
+    ///
     @FXML VBox gry;
     @FXML VBox geografia;
     @FXML VBox religie;
@@ -25,6 +26,7 @@ public class CategoryController implements Initializable {
     @FXML VBox kosmos;
     @FXML VBox nauki;
     @FXML VBox nieokreslone;
+    /// Array lists will be needed for automation
     ArrayList<String> categ = new ArrayList<String>();
     ArrayList<VBox> contain = new ArrayList<VBox>();
     @Override
@@ -37,21 +39,23 @@ public class CategoryController implements Initializable {
         categ.add("Kosmos");        contain.add(kosmos);
         categ.add("Nauki ścisłe");  contain.add(nauki);
        // categ.add("Nieokreślone"); contain.add(nieokreslone);
+        /// loops thorugh every Category
         for(int i=0;i<categ.size();i++){
             String DbUsernameCheckQuery = "Select * FROM quizzes WHERE category = ?";
             try (Connection conn = Database.getConnection();
                 PreparedStatement stmt =conn.prepareStatement(DbUsernameCheckQuery)){
 
-                    stmt.setString(1, categ.get(i));
-                    ResultSet rs = stmt.executeQuery();
+                stmt.setString(1, categ.get(i));
+                ResultSet rs = stmt.executeQuery();
+                    ///adds header in every category
                 HBox temp = new HBox();
                 temp.getChildren().addAll(new Label("title "), new Label("difficulty "), new Label("creator_id "));
                 contain.get(i).getChildren().add(temp);
+                /// loops through every element iun table and adds it to correct VBox
                 while(rs.next()) {
                     HBox record = new HBox();
                     record.getChildren().addAll(new Label(rs.getString("title")), new Label(rs.getString("difficulty"), new Label(rs.getString("creator_id"))));
                     contain.get(i).getChildren().add(record);
-                    System.out.println(rs.getString("title"));
                 }
             }
             catch (SQLException e){

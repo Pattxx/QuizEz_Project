@@ -12,8 +12,9 @@ public class MainController {
     public void onButtonClick(ActionEvent event) {
         try{
             String temp="/org/example/quizez/main-view.fxml",path=event.getSource().toString();
-            //get stage from button
+            ///get stage from button
             Stage stage = SceneManager.getStageFrom(event.getSource());
+            ///Changes temp to proper path depending on needs
             if(path.contains("id=Kategorie")){
                 temp="/org/example/quizez/category-view.fxml";
             }
@@ -26,7 +27,7 @@ public class MainController {
             else if(path.contains("id=Profil")){
                 temp="/org/example/quizez/profil-view.fxml";
             }
-            //now switch active scene to register-view.fxml
+            //now switch active scene to temp
             SceneManager.switchScene(stage, temp, null);
 
         }catch(IOException e){
