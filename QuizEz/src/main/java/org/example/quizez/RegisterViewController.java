@@ -2,7 +2,9 @@ package org.example.quizez;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import org.example.quizez.net.sqlitetuorial.Database;
 
@@ -20,19 +22,13 @@ public class RegisterViewController {
     @FXML private Button GoBackButton;
     @FXML private Label ErrorLabel;
 
-
-//    @FXML
-//    public void initialize(){
-//        ErrorLabel.setVisible(false); //hide ErrorLabel at init
-//    }
-
     public void onGoBackAccClick(ActionEvent event) {
 
         try{
-            //Get stage from clicked button - needed as argument for next
+            ///Get stage from clicked button - needed as argument for next
             Stage stage = SceneManager.getStageFrom(event.getSource());
 
-            //Now change scene to previous: login-view.fxml
+            ///Now change scene to previous: login-view.fxml
             SceneManager.switchScene(stage,"/org/example/quizez/login-view.fxml", null);
 
 
@@ -57,57 +53,81 @@ public class RegisterViewController {
         String newPassword = PasswordInputField.getText();
         String newRepeatPassword = PasswordInputField.getText();
 
-        //any field is empty
+        ///any field is empty
         if(newUsername.isEmpty() || newPassword.isEmpty() || newRepeatPassword.isEmpty()){
             ErrorLabel.setVisible(true);
             ErrorLabel.setText("Wypełnij wszystkie pola!");
             return;
         }
-        //passwords do not match
+        ///passwords do not match
         if(!newPassword.equals(newRepeatPassword)){
             ErrorLabel.setVisible(true);
             ErrorLabel.setText("Hasła są różne!");
             return;
         }
 
-        //username is taken
+        ///username is taken
         if(isUsernameTaken(newUsername)){
             ErrorLabel.setVisible(true);
             ErrorLabel.setText("Nazwa jest już zajęta.");
             return;
         }
 
-        //reset errorlabel text
+        ///reset errorlabel text
         ErrorLabel.setText("");
 
-        //TODO Proceed with acc creation
-
-
+        ///Proceed with acc creation
+        boolean success = createAccount(newUsername, newPassword);
+        if(success){
+            ErrorLabel.setVisible(true);
+            ErrorLabel.setTextFill(Paint.valueOf("green"));
+            ErrorLabel.setText("Utworzono użytkownika, możesz się teraz zalogować");
+        } else {
+            ErrorLabel.setVisible(true);
+            ErrorLabel.setTextFill(Paint.valueOf("red"));
+            ErrorLabel.setText("Utworzenie użytkownika nie powiodło się. Spróbuj ponownie.");
+        }
     }
-
 
     private boolean isUsernameTaken(String usernametoCheck){
 
-        //here "?" acts like a placeholder value, we set it using stmt.SetString(...)
+        ///here "?" acts like a placeholder value, we set it using stmt.SetString(...)
         String DbUsernameCheckQuery = "Select COUNT(*) FROM users WHERE username = ?";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt =conn.prepareStatement(DbUsernameCheckQuery)){
-
-            //using prepared statement, execute query with set value
-            // index "1" - juest refers to first "?" placeholder (can be multiple)
+            ///using prepared statement, execute query with set value
+            ///index "1" - juest refers to first "?" placeholder (can be multiple)
             stmt.setString(1, usernametoCheck);
             ResultSet rs = stmt.executeQuery();
-            
-            //this works like this:
-            //rs.next() moves "cursor" to the first (and only here) result row
-            //rs.getInt(1) gets value of first column - it's the count
-            //now if count is greater than then username exists in DB and returns true
+            ///this works like this:
+            ///rs.next() moves "cursor" to the first (and only here) result row
+            ///rs.getInt(1) gets value of first column - it's the count
+            ///now if count is greater than then username exists in DB and returns true
             return rs.next() && rs.getInt(1) > 0;
 
         } catch (SQLException e){
             System.err.println("Connection failed :(" + e.getMessage());
-            return true; //fail-safe
+            return true; ///fail-safe
         }
     }
+
+    private boolean createAccount(String username, String password){
+        String insertNewUserDb = "INSERT INTO users (username, password) VALUES (?, ?)";
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(insertNewUserDb)){
+
+                stmt.setString(1, username);
+                stmt.setString(2, password);
+
+                int rowsInserted = stmt.executeUpdate();
+                return rowsInserted > 0; ///if true then it's a success
+
+        }catch(SQLException e){
+            System.err.println("Failed to create acc" + e.getMessage());
+            return false; ///fail-safe
+        }
+    }
+
 }
