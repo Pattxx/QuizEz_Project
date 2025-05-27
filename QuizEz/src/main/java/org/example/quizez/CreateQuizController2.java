@@ -46,7 +46,7 @@ public class CreateQuizController2 {
         //GrantAccess();
     }
 
-    ///method handles adding new answer blocks dynamically based on current answer block count
+    ///if answers limit is reached then block AddMoreButtons btn
     private void addAnswerBlock() {
         HBox answerBlock = new HBox(10);
         RadioButton answerCorrectRadio = new RadioButton();
@@ -97,6 +97,7 @@ public class CreateQuizController2 {
                 }
             }
             ///ensure one of radio btns is selected
+            ///same logic as before answersContainer -> first answer -> select that as correct
             if(AnswserCorrectToggle
                     .getSelectedToggle() == null && answersCount > 0){
                 AnswserCorrectToggle.selectToggle((Toggle) ((HBox) answersContainer.getChildren().get(0)).getChildren().get(0));
