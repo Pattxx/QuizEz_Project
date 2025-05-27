@@ -11,9 +11,11 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.MainController">
    <children>
-      <SplitMenuButton fx:id="Profil" onAction="#onButtonClick" layoutX="440.0" layoutY="2.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="185.0" text="Profil Użytkownika">
+      <SplitMenuButton fx:id="Profil" layoutX="440.0" layoutY="2.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="31.0" prefWidth="185.0" text="Profil Użytkownika">
         <items>
-          <MenuItem fx:id="Wyloguj" mnemonicParsing="false" text="Wyloguj" />
+          <MenuItem fx:id="Wyloguj" onAction="#onWyloguj" mnemonicParsing="false" text="Wyloguj" />
+            <MenuItem fx:id="Zaloguj" onAction="#onLoginClick" mnemonicParsing="false" text="Zaloguj" />
+            <MenuItem fx:id="Zarejestruj" onAction="#onRegisterClick" mnemonicParsing="false" text="Zarejestruj" />
         </items>
       </SplitMenuButton>
       <ImageView fx:id="Logo" fitHeight="78.0" fitWidth="104.0" layoutX="261.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
@@ -23,17 +25,17 @@
       </ImageView>
       <VBox alignment="CENTER" layoutX="145.0" layoutY="107.0" prefHeight="236.0" prefWidth="313.0">
          <children>
-            <Button fx:id="Kategorie" onAction="#onButtonClick" mnemonicParsing="false" prefHeight="51.0" prefWidth="205.0" text="Kategorie quizu" >
+            <Button fx:id="Kategorie" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="51.0" prefWidth="205.0" text="Kategorie quizu">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="utworzQuiz" onAction="#onButtonClick" mnemonicParsing="false" prefHeight="51.0" prefWidth="205.0" text="Utwórz quiz">
+            <Button fx:id="utworzQuiz" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="51.0" prefWidth="205.0" text="Utwórz quiz">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="twojeQuizy" onAction="#onButtonClick" mnemonicParsing="false" prefHeight="51.0" prefWidth="205.0" text="Twoje quizy" />
+            <Button fx:id="twojeQuizy" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="51.0" prefWidth="205.0" text="Twoje quizy" />
          </children></VBox>
       <ImageView fx:id="Icon" fitHeight="51.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
          <image>

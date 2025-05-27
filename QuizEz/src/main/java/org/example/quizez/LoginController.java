@@ -50,7 +50,6 @@ public class LoginController {
             if (userId != null){
                 ///login successful, switch scene, get id
                 SessionController.login(userId, username);
-
                 try{
                   Stage stage = SceneManager.getStageFrom(event.getSource());
                   SceneManager.switchScene(stage,"/org/example/quizez/main-view.fxml", null );
@@ -92,6 +91,21 @@ public class LoginController {
         }
     }
 
+    public void onReturnClick(ActionEvent event) {
+        try {
+            ///get stage from button
+            Stage stage = SceneManager.getStageFrom(event.getSource());
+            //now switch active scene to temp
+            SceneManager.switchScene(stage, "/org/example/quizez/main-view.fxml", null);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setHeaderText(null);
+            alert1.setContentText("Scene change failed");
+            alert1.showAndWait();
+        }
+    }
     public void onIsGuestCheckBoxClick(ActionEvent event) {
         boolean isGuest = IsGuestCheckBox.isSelected();
 
