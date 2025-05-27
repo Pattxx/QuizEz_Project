@@ -1,8 +1,8 @@
 package org.example.quizez;
 ///This class simulates local app data session
 public class SessionController {
-    private static Integer currentUserId = null;
-    private static  String currentUsername = null;
+    public static Integer currentUserId = null;
+    public static  String currentUsername = null;
 
     public static void login(int userId, String username){
         currentUserId = userId;

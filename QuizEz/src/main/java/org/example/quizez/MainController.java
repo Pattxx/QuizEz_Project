@@ -6,12 +6,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.EventObject;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -92,7 +90,7 @@ public class MainController implements Initializable {
             }
             else if(path.contains("id=utworzQuiz")){
                 if(SessionController.getCurrentUserId()!= null){
-                    temp="/org/example/quizez/creator-view.fxml";
+                    temp= "/org/example/quizez/createQuiz1-view.fxml";
                 }
                 else temp="/org/example/quizez/login-view.fxml";
             }
