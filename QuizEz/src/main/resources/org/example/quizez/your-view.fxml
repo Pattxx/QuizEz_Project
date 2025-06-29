@@ -7,19 +7,25 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.layout.VBox?>
-<AnchorPane  prefWidth="1280" prefHeight="720"
+<AnchorPane prefWidth="1280" prefHeight="720"
             xmlns="http://javafx.com/javafx/17.0.6"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.example.quizez.UsersQuiz">
     <children>
+        <VBox alignment="CENTER" spacing="15"
+              layoutX="490" layoutY="100" prefWidth="300">
+            <children>
+                <Label text="Twoje Quizy">
+                    <font><Font size="22.0" /></font>
+                </Label>
+                <ListView fx:id="ListaQuizow" prefHeight="234.0" prefWidth="308.0" />
+                <Button onAction="#onProfilClick" mnemonicParsing="false" prefHeight="44.0" prefWidth="96.0" text="Profil" />
+                <VBox fx:id="buttonContainer" spacing="10" prefWidth="308.0" />
+            </children>
+        </VBox>
         <Button onAction="#onReturnClick" prefHeight="55.0" prefWidth="104.0" text="Powrót" />
-        <ListView fx:id="ListaQuizow" layoutX="147.0" layoutY="71.0" prefHeight="234.0" prefWidth="308.0" />
-        <Label layoutX="241.0" layoutY="39.0" text="Twoje Quizy">
-            <font><Font size="22.0" /></font>
-        </Label>
-        <Button onAction="#onProfilClick" layoutX="504.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="96.0" text="Profil" />
-        <!-- Kontener na przyciski pod ListView -->
-        <VBox fx:id="buttonContainer" spacing="10" layoutX="147.0" layoutY="320.0" prefWidth="308.0" />
+
     </children>
 </AnchorPane>
+
 

@@ -5,20 +5,37 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.layout.VBox?>
 <AnchorPane prefWidth="1280" prefHeight="720" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.CreateQuizController1">
+
    <children>
-      <Label fx:id="CreateQuizLabel" layoutX="235.0" layoutY="24.0" text="Utwórz nowy quiz" />
-      <TextField fx:id="QuizNameField" layoutX="208.0" layoutY="99.0" />
-      <Label fx:id="QuizNameLabel" layoutX="247.0" layoutY="81.0" text="Nazwa quizu:" />
-      <Label fx:id="QuizCategoryLabel" layoutX="218.0" layoutY="140.0" text="Wybierz kategorię quizu" />
-      <ChoiceBox fx:id="QuizCategoryChoiceBox" layoutX="207.0" layoutY="158.0" prefWidth="150.0" />
-      <Button fx:id="GoToAddQuestionsSceneButton" layoutX="237.0" layoutY="348.0" mnemonicParsing="false" onAction="#onGoToAddQuestionsSceneButtonClick" text="Dodaj pytania" />
-      <Label fx:id="ErrorLabel" layoutX="267.0" layoutY="330.0" text="Error" textFill="RED" visible="false" />
-      <Label fx:id="QuizDifficultyLabel" layoutX="216.0" layoutY="200.0" text="Wybierz trudność quizu:" />
-      <ChoiceBox fx:id="QuizDifficultyCheckbox" layoutX="207.0" layoutY="218.0" prefWidth="150.0" />
-      <Label fx:id="QuizDurationLabel" layoutX="202.0" layoutY="257.0" text="Wprowadź limit czasowy (min)" />
-      <TextField fx:id="QuizDurationField" layoutX="259.0" layoutY="284.0" prefHeight="26.0" prefWidth="41.0" />
-      <Button fx:id="ReturnButton" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#onReturnButtonClick" text="Wróć" />
+      <VBox alignment="CENTER" spacing="15"
+            AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+            maxWidth="400">
+
+         <Label fx:id="CreateQuizLabel" text="Utwórz nowy quiz" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+         <Label fx:id="QuizNameLabel" text="Nazwa quizu:" />
+         <TextField fx:id="QuizNameField" maxWidth="350"/>
+
+         <Label fx:id="QuizCategoryLabel" text="Wybierz kategorię quizu" />
+         <ChoiceBox fx:id="QuizCategoryChoiceBox" maxWidth="350"/>
+
+         <Label fx:id="QuizDifficultyLabel" text="Wybierz trudność quizu:" />
+         <ChoiceBox fx:id="QuizDifficultyCheckbox" maxWidth="350"/>
+
+         <Label fx:id="QuizDurationLabel" text="Wprowadź limit czasowy (min)" />
+         <TextField fx:id="QuizDurationField" maxWidth="100"/>
+
+         <Label fx:id="ErrorLabel" text="Error" textFill="RED" visible="false"/>
+
+         <Button fx:id="GoToAddQuestionsSceneButton" mnemonicParsing="false" onAction="#onGoToAddQuestionsSceneButtonClick" text="Dodaj pytania" maxWidth="200"/>
+
+
+      </VBox>
+      <Button fx:id="ReturnButton" mnemonicParsing="false" onAction="#onReturnButtonClick" text="Wróć" maxWidth="100"/>
+
    </children>
+
 </AnchorPane>

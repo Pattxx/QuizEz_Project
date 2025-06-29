@@ -3,25 +3,41 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.quizez.EditQuestionController"
-      spacing="10"  prefWidth="1280" prefHeight="720">
+<AnchorPane prefWidth="1280" prefHeight="720"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.quizez.EditQuestionController">
 
-    <ListView fx:id="questionsListView" prefWidth="200" />
+    <children>
+        <StackPane AnchorPane.topAnchor="0.0"
+                   AnchorPane.bottomAnchor="0.0"
+                   AnchorPane.leftAnchor="0.0"
+                   AnchorPane.rightAnchor="0.0">
 
-    <VBox spacing="10" prefWidth="500">
-        <Label text="Treść pytania:"/>
-        <TextArea fx:id="questionTextArea" prefHeight="100" wrapText="true"/>
+            <HBox spacing="20" maxWidth="720" prefWidth="720" alignment="CENTER">
 
-        <Label text="Odpowiedzi:"/>
-        <VBox fx:id="answersContainer" spacing="5"/>
+                <ListView fx:id="questionsListView" prefWidth="200" prefHeight="500" />
 
-        <HBox spacing="10">
-            <Button text="Dodaj odpowiedź" onAction="#onAddAnswer"/>
-            <Button text="Zapisz pytanie" onAction="#onSaveQuestion"/>
-        </HBox>
-        <Button fx:id="ReturnButton" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#onReturnButtonClick" text="Wróć" />
+                <VBox spacing="10" prefWidth="500" alignment="TOP_LEFT">
 
-    </VBox>
-</HBox>
+                    <Label text="Treść pytania:"/>
+                    <TextArea fx:id="questionTextArea" prefHeight="100" wrapText="true" />
+
+                    <Label text="Odpowiedzi:"/>
+                    <VBox fx:id="answersContainer" spacing="5" />
+
+                    <HBox spacing="10">
+                        <Button text="Dodaj odpowiedź" onAction="#onAddAnswer" />
+                        <Button text="Zapisz pytanie" onAction="#onSaveQuestion" />
+                    </HBox>
+
+
+                </VBox>
+
+            </HBox>
+
+        </StackPane>
+        <Button fx:id="ReturnButton" mnemonicParsing="false" onAction="#onReturnButtonClick" text="Wróć" maxWidth="100" />
+
+    </children>
+</AnchorPane>

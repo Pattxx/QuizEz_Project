@@ -6,14 +6,43 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane  prefWidth="1280" prefHeight="720" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.CreateQuizController2">
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<AnchorPane prefWidth="1280" prefHeight="720"
+            xmlns="http://javafx.com/javafx/17.0.6"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.quizez.CreateQuizController2">
+
    <children>
-      <TextArea fx:id="QuestionTextArea" layoutX="65.0" layoutY="63.0" prefHeight="94.0" prefWidth="456.0" text="Wpisz treść pytania" />
-      <VBox fx:id="answersContainer" layoutX="65.0" layoutY="208.0" prefHeight="112.0" prefWidth="456.0" spacing="5" />
-      <!--HBOX ANSWERS ADDED DYNAMICALLY-->
-      <Button fx:id="AddMoreAnswsersButton" layoutX="238.0" layoutY="174.0" mnemonicParsing="false" onAction="#onAddMoreAnswsersButtonClick" text="Dodaj odpowiedź" />
-      <Button fx:id="SaveQuizButton" layoutX="247.0" layoutY="334.0" mnemonicParsing="false" onAction="#onSaveQuestionButtonClick" text="Zapisz pytanie" />
-      <Button fx:id="GoToSummaryButton" layoutX="429.0" layoutY="334.0" mnemonicParsing="false" onAction="#onGoToSummaryButtonClick" text="Podsumowanie" />
-      <Label fx:id="WarningLabel" layoutX="286.0" layoutY="27.0"  text="Dodaj przynajmniej jedno pytanie, aby kontynuować" visible="false" style="-fx-text-fill: red;" />
+      <StackPane AnchorPane.topAnchor="0.0"
+                 AnchorPane.bottomAnchor="0.0"
+                 AnchorPane.leftAnchor="0.0"
+                 AnchorPane.rightAnchor="0.0">
+
+         <VBox alignment="CENTER" spacing="15" maxWidth="600" prefWidth="600" style="-fx-background-color: transparent;">
+
+            <Label fx:id="WarningLabel" text="Dodaj przynajmniej jedno pytanie, aby kontynuować"
+                   visible="false" style="-fx-text-fill: red;"/>
+
+            <TextArea fx:id="QuestionTextArea" prefHeight="100" prefWidth="600"
+                      wrapText="true" promptText="Wpisz treść pytania" />
+
+            <Button fx:id="AddMoreAnswsersButton" mnemonicParsing="false"
+                    onAction="#onAddMoreAnswsersButtonClick" text="Dodaj odpowiedź" maxWidth="200"/>
+
+            <VBox fx:id="answersContainer" spacing="5" prefWidth="600" />
+
+            <HBox spacing="20" alignment="CENTER">
+               <Button fx:id="SaveQuizButton" mnemonicParsing="false"
+                       onAction="#onSaveQuestionButtonClick" text="Zapisz pytanie" maxWidth="200"/>
+               <Button fx:id="GoToSummaryButton" mnemonicParsing="false"
+                       onAction="#onGoToSummaryButtonClick" text="Podsumowanie" maxWidth="200"/>
+            </HBox>
+
+         </VBox>
+      </StackPane>
    </children>
+
 </AnchorPane>
+
+

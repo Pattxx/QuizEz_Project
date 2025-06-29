@@ -5,14 +5,39 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane  prefWidth="1280" prefHeight="720" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.CreateQuizSummaryController">
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<AnchorPane prefWidth="1280" prefHeight="720"
+            xmlns="http://javafx.com/javafx/17.0.6"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.quizez.CreateQuizSummaryController">
+
    <children>
-      <ListView fx:id="questionListView" layoutX="46.0" layoutY="100.0" prefHeight="200.0" prefWidth="508.0" />
-      <Button fx:id="SaveQuizDataButton" layoutX="478.0" layoutY="335.0" mnemonicParsing="false" onAction="#onSaveQuizDataButton" text="Zapisz quiz" />
-      <Label fx:id="NameLabel" layoutX="37.0" layoutY="21.0" prefHeight="26.0" prefWidth="234.0" text="Nazwa:" />
-      <Label fx:id="CategoryLabel" layoutX="37.0" layoutY="41.0" prefHeight="26.0" prefWidth="234.0" text="Kategoria:" />
-      <Label fx:id="DifficultyLabel" layoutX="37.0" layoutY="61.0" prefHeight="26.0" prefWidth="234.0" text="Poziom trudności:" />
-      <Label fx:id="TimeLabel" layoutX="347.0" layoutY="21.0" prefHeight="26.0" prefWidth="155.0" text="Limit czasowy:" />
-      <Button fx:id="ReturnButton" layoutX="46.0" layoutY="329.0" mnemonicParsing="false" onAction="#onReturnButtonClick" text="Wróć do menu" />
+      <StackPane AnchorPane.topAnchor="0.0"
+                 AnchorPane.bottomAnchor="0.0"
+                 AnchorPane.leftAnchor="0.0"
+                 AnchorPane.rightAnchor="0.0">
+
+         <VBox alignment="CENTER" spacing="15" maxWidth="600" prefWidth="600">
+
+            <HBox spacing="20" prefWidth="600" alignment="CENTER_LEFT">
+               <Label fx:id="NameLabel" text="Nazwa:" prefWidth="200"/>
+               <Label fx:id="CategoryLabel" text="Kategoria:" prefWidth="200"/>
+               <Label fx:id="DifficultyLabel" text="Poziom trudności:" prefWidth="200"/>
+            </HBox>
+
+            <Label fx:id="TimeLabel" text="Limit czasowy:" prefWidth="600" style="-fx-font-weight: bold;" />
+
+            <ListView fx:id="questionListView" prefHeight="200" prefWidth="600" />
+
+            <HBox spacing="20" alignment="CENTER">
+               <Button fx:id="ReturnButton" text="Wróć do menu" mnemonicParsing="false" onAction="#onReturnButtonClick" maxWidth="200"/>
+               <Button fx:id="SaveQuizDataButton" text="Zapisz quiz" mnemonicParsing="false" onAction="#onSaveQuizDataButton" maxWidth="200"/>
+            </HBox>
+
+         </VBox>
+
+      </StackPane>
    </children>
 </AnchorPane>

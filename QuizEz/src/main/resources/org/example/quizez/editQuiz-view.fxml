@@ -10,15 +10,22 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.quizez.EditQuizController"
             prefHeight="400.0" prefWidth="600.0">
-    <VBox spacing="10" alignment="CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
-        <TextField fx:id="quizNameField" promptText="Nazwa quizu" prefWidth="300"/>
-        <ComboBox fx:id="categoryComboBox" prefWidth="300"/>
-        <ComboBox fx:id="difficultyComboBox" prefWidth="300"/>
-        <TextField fx:id="durationField" promptText="Czas (minuty)" prefWidth="40"/>
-        <HBox spacing="10" alignment="CENTER">
-            <Button text="Zapisz" onAction="#onSaveClick"/>
-            <Button text="Anuluj" onAction="#onCancelClick"/>
-        </HBox>
-    </VBox>
+
+    <children>
+        <VBox spacing="10" alignment="CENTER" prefWidth="350"
+              AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+
+            <TextField fx:id="quizNameField" promptText="Nazwa quizu" prefWidth="300" maxWidth="300" />
+            <ComboBox fx:id="categoryComboBox" prefWidth="300" maxWidth="300" />
+            <ComboBox fx:id="difficultyComboBox" prefWidth="300" maxWidth="300" />
+            <TextField fx:id="durationField" promptText="Czas (minuty)" prefWidth="100" maxWidth="100" />
+
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Zapisz" onAction="#onSaveClick"/>
+                <Button text="Anuluj" onAction="#onCancelClick"/>
+            </HBox>
+
+        </VBox>
+    </children>
 
 </AnchorPane>

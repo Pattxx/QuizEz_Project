@@ -11,24 +11,32 @@
 <?import javafx.geometry.Insets?>
 <AnchorPane prefWidth="1280" prefHeight="720" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.QuestionController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3a88b2" height="150.0" layoutX="-12.0" layoutY="-122.0" stroke="BLACK" strokeType="INSIDE" width="639.0" />
-      <ProgressBar fx:id="ProgressPytania" layoutX="286.0" layoutY="3.0" prefHeight="22.0" prefWidth="238.0" progress="0.0" />
-      <Button onAction="#onMainMenuClick" layoutY="342.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" text="Zrezygnuj" />
-      <Button onAction="#onNext" layoutX="510.0" layoutY="342.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="117.0" text="Następne" />
-      <Text fx:id="Question" layoutX="20.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pytanie" wrappingWidth="303.13671875" />
+
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3a88b2" height="150.0" layoutX="320.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="640.0" />
+
+      <ProgressBar fx:id="ProgressPytania" layoutX="520.0" layoutY="40.0" prefHeight="22.0" prefWidth="240.0" progress="0.0" />
+
+      <Label fx:id="QuizName" layoutX="340.0" layoutY="15.0" text="Nazwa Quizu" />
+      <Label fx:id="QuizTime" layoutX="520.0" layoutY="15.0" text="Timer:" />
+      <Label fx:id="QuestionXY" layoutX="800.0" layoutY="15.0" text="Pytanie X z Y" />
+
+
+      <Text fx:id="Question" layoutX="340.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pytanie" wrappingWidth="600" />
+
       <RadioButton fx:id="Answer1" mnemonicParsing="false" text="RadioButton" toggleGroup="$Quest" visible="false">
          <toggleGroup>
             <ToggleGroup fx:id="Quest" />
          </toggleGroup>
       </RadioButton>
-      <VBox fx:id="AnswerContainer" layoutX="20.0" layoutY="127.0" prefHeight="200.0" prefWidth="554.0">
 
-      </VBox>
-      <Label  fx:id="QuizTime" layoutX="155.0" layoutY="6.0" text="Timer:" />
-      <Label fx:id="QuizName" layoutX="14.0" layoutY="6.0" text="Nazwa Quizu" />
-      <Label fx:id="QuestionXY" layoutX="534.0" layoutY="6.0" text=" Pytanie X z Y" />
+      <VBox fx:id="AnswerContainer" layoutX="340.0" layoutY="210.0" prefHeight="200.0" prefWidth="600.0" />
+
+      <Button onAction="#onMainMenuClick" layoutX="440.0" layoutY="430.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" text="Zrezygnuj" />
+      <Button onAction="#onNext" layoutX="700.0" layoutY="430.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="117.0" text="Następne" />
    </children>
 </AnchorPane>
+
+
 
 
 
