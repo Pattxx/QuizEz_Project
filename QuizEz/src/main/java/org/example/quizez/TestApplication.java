@@ -11,7 +11,7 @@ public class TestApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(TestApplication.class.getResource("first-login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TestApplication.class.getResource("main-view.fxml"));
 
         ///default size set to 1280x720
         Scene scene = new Scene(fxmlLoader.load(), 1280,720);
