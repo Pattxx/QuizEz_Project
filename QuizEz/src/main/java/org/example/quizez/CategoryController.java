@@ -1,10 +1,12 @@
 package org.example.quizez;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -18,6 +20,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class CategoryController implements Initializable {
@@ -32,6 +36,8 @@ public class CategoryController implements Initializable {
     /// Array lists will be needed for automation
     ArrayList<String> categ = new ArrayList<String>();
     ArrayList<VBox> contain = new ArrayList<VBox>();
+    Map<String, String> hboxMap = new HashMap<String, String>();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         categ.add("Gry wideo");     contain.add(gry);
@@ -57,6 +63,27 @@ public class CategoryController implements Initializable {
                 /// loops through every element iun table and adds it to correct VBox
                 while(rs.next()) {
                     HBox record = new HBox();
+                    hboxMap.put(record.toString(),rs.getString("id"));
+                    ///Added Onclick functonality in order to choose the quizz
+                    record.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            try{
+                                Static.QuizzId=hboxMap.get(mouseEvent.getSource().toString());
+                                ///get stage from button
+                                Stage stage = SceneManager.getStageFrom(mouseEvent.getSource());
+                                //now switch active scene to temp
+                                SceneManager.switchScene(stage, "/org/example/quizez/Question-view.fxml", null);
+
+                            }catch(IOException e){
+                                e.printStackTrace();
+                                Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                                alert1.setHeaderText(null);
+                                alert1.setContentText("Scene change failed");
+                                alert1.showAndWait();
+                            }
+                        }
+                    });
                     record.getChildren().addAll(new Label(rs.getString("title")), new Label(rs.getString("difficulty"), new Label(rs.getString("creator_id"))));
                     contain.get(i).getChildren().add(record);
                 }

@@ -6,21 +6,21 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.Wynik">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.ResultController">
    <children>
-      <Button layoutX="230.0" layoutY="176.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="105.0" text="Zagraj Ponownie" />
-      <Button layoutX="199.0" layoutY="238.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="167.0" text="Powrót do ekranu głównego" />
+      <Button layoutX="230.0" layoutY="176.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="105.0" text="Zagraj Ponownie" onAction="#onRepeatClick"/>
+      <Button layoutX="199.0" layoutY="238.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="167.0" text="Powrót do ekranu głównego" onAction="#onMainMenuClick" />
       <Label layoutX="147.0" layoutY="57.0" text="Gratulacje twój wynik to:">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label layoutX="385.0" layoutY="57.0" text="X/Y">
+      <Label fx:id="answered" layoutX="385.0" layoutY="57.0" text="X/Y">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label layoutX="254.0" layoutY="107.0" text="X/Y%">
+      <Label fx:id="answeredPercent" layoutX="254.0" layoutY="107.0" text="X/Y%">
          <font>
             <Font size="24.0" />
          </font>
