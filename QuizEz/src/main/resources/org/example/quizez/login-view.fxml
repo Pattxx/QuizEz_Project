@@ -15,6 +15,7 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.example.quizez.loginControllers.LoginController"
             prefWidth="1280" prefHeight="720"
+            stylesheets="@../../../css/style.css"
 >
 
 <children>

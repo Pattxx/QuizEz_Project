@@ -32,6 +32,7 @@ public class ProfilController  implements Initializable  {
     @FXML private VBox Quizy;
     @FXML private Label SredniWynik;
     @FXML private Label LiczbaQuiz;
+    @FXML private Label Nazwa;
     @FXML private ImageView Icon;
     ///handle load
     public void initialize(URL url, ResourceBundle rb) {
@@ -44,14 +45,14 @@ public class ProfilController  implements Initializable  {
              stmt.setInt(1, SessionController.currentUserId);
              ResultSet rs = stmt.executeQuery();
             HBox temp = new HBox();
-            temp.getChildren().addAll(new Label("Tytuł"), new Label("Kategoria"), new Label("Wynik"),new Label("data"));
+            temp.getChildren().addAll(new Label("Tytuł"),new Label("|"), new Label("Kategoria"),new Label("|"), new Label("Wynik"),new Label("|"),new Label("data"));
             Quizy.getChildren().add(temp);
             /// loops through every element iun table and adds it to correct VBox
 
             while(rs.next()) {
                 liczQuiz++;
                 HBox record = new HBox();
-                record.getChildren().addAll(new Label(rs.getString("title")), new Label(rs.getString("category")), new Label(rs.getString("percentage")), new Label(rs.getString("date_taken")));
+                record.getChildren().addAll(new Label(rs.getString("title")),new Label("|"), new Label(rs.getString("category")),new Label("|"), new Label((String.format("%.00f", rs.getDouble("percentage"))+"%")),new Label("|"), new Label(rs.getString("date_taken")));
                 Quizy.getChildren().add(record);
                 srednia+=Float.valueOf(rs.getString("percentage"));
             }
@@ -62,7 +63,7 @@ public class ProfilController  implements Initializable  {
             System.err.println("Connection failed :(" + e.getMessage());
         }
         ///setting icon
-        DbUsernameCheckQuery = "Select avatar_path FROM user_profile WHERE user_id = ?";
+        DbUsernameCheckQuery = "Select avatar_path,display_name FROM user_profile WHERE user_id = ?";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt =conn.prepareStatement(DbUsernameCheckQuery)){
             stmt.setInt(1, SessionController.currentUserId);
@@ -70,6 +71,10 @@ public class ProfilController  implements Initializable  {
             if(rs.getString("avatar_path" )!= null){
                 StaticController.IconPath=rs.getString("avatar_path");
             }
+            if(rs.getString("display_name" )!= null){
+                Nazwa.setText(rs.getString("display_name" ));
+            }
+
         }
         catch (SQLException e){
             System.err.println("Connection failed :(" + e.getMessage());

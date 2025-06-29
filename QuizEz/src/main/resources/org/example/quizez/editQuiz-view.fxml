@@ -9,7 +9,8 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.quizez.editControllers.EditQuizController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="600.0"
+            stylesheets="@../../../css/style.css">
 
     <children>
         <VBox spacing="10" alignment="CENTER" prefWidth="350"
