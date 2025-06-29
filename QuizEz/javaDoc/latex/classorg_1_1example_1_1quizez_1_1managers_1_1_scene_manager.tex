@@ -1,0 +1,54 @@
+\doxysection{org.\+example.\+quizez.\+managers.\+Scene\+Manager Class Reference}
+\hypertarget{classorg_1_1example_1_1quizez_1_1managers_1_1_scene_manager}{}\label{classorg_1_1example_1_1quizez_1_1managers_1_1_scene_manager}\index{org.example.quizez.managers.SceneManager@{org.example.quizez.managers.SceneManager}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classorg_1_1example_1_1quizez_1_1managers_1_1_scene_manager_a3229dac2db298c0f6425d115dd09af26}{switch\+Scene}} (Stage stage, String fxml\+Path, String title)  throws IOException 
+\item 
+\Hypertarget{classorg_1_1example_1_1quizez_1_1managers_1_1_scene_manager_a9be5583a540864c7933f13b604f65cfc}\label{classorg_1_1example_1_1quizez_1_1managers_1_1_scene_manager_a9be5583a540864c7933f13b604f65cfc} 
+static void {\bfseries switch\+Scene} (Stage stage, String fxml\+Path, String title, Consumer$<$ FXMLLoader $>$ loader\+Handler)  throws IOException 
+\begin{DoxyCompactList}\small\item\em version of switch\+Scene that can expose data from previous controller to the next (method overload) \end{DoxyCompactList}\item 
+static Stage \mbox{\hyperlink{classorg_1_1example_1_1quizez_1_1managers_1_1_scene_manager_a42687809fa892508f373afa0abfa3cba}{get\+Stage\+From}} (Object source)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classorg_1_1example_1_1quizez_1_1managers_1_1_scene_manager_a42687809fa892508f373afa0abfa3cba}\index{org.example.quizez.managers.SceneManager@{org.example.quizez.managers.SceneManager}!getStageFrom@{getStageFrom}}
+\index{getStageFrom@{getStageFrom}!org.example.quizez.managers.SceneManager@{org.example.quizez.managers.SceneManager}}
+\doxysubsubsection{\texorpdfstring{getStageFrom()}{getStageFrom()}}
+{\footnotesize\ttfamily \label{classorg_1_1example_1_1quizez_1_1managers_1_1_scene_manager_a42687809fa892508f373afa0abfa3cba} 
+static Stage org.\+example.\+quizez.\+managers.\+Scene\+Manager.\+get\+Stage\+From (\begin{DoxyParamCaption}\item[{Object}]{source}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Pomocnicza metoda do pobrania Stage z kontrolera. 
+\begin{DoxyParams}{Parameters}
+{\em source} & dowolny element kontrolki (np. przycisk) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+aktualny Stage 
+\end{DoxyReturn}
+\Hypertarget{classorg_1_1example_1_1quizez_1_1managers_1_1_scene_manager_a3229dac2db298c0f6425d115dd09af26}\index{org.example.quizez.managers.SceneManager@{org.example.quizez.managers.SceneManager}!switchScene@{switchScene}}
+\index{switchScene@{switchScene}!org.example.quizez.managers.SceneManager@{org.example.quizez.managers.SceneManager}}
+\doxysubsubsection{\texorpdfstring{switchScene()}{switchScene()}}
+{\footnotesize\ttfamily \label{classorg_1_1example_1_1quizez_1_1managers_1_1_scene_manager_a3229dac2db298c0f6425d115dd09af26} 
+static void org.\+example.\+quizez.\+managers.\+Scene\+Manager.\+switch\+Scene (\begin{DoxyParamCaption}\item[{Stage}]{stage}{, }\item[{String}]{fxml\+Path}{, }\item[{String}]{title}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+Przełącza scenę w aktualnym oknie (Stage). 
+\begin{DoxyParams}{Parameters}
+{\em stage} & obecny stage (okno) \\
+\hline
+{\em fxml\+Path} & ścieżka do pliku FXML (np. "{}main.\+fxml"{}) \\
+\hline
+{\em title} & tytuł okna (może być null) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & jeśli FXML nie zostanie załadowany \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Szk\+Tech\+Projekty/\+Quiz\+Ez Project/\+Quiz\+Ez/src/main/java/org/example/quizez/managers/Scene\+Manager.\+java\end{DoxyCompactItemize}

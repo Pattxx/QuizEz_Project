@@ -1,0 +1,59 @@
+\doxysection{org.\+example.\+quizez.\+quiz\+Create\+Controllers.\+Create\+Quiz\+Summary\+Controller Class Reference}
+\hypertarget{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller}{}\label{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller}\index{org.example.quizez.quizCreateControllers.CreateQuizSummaryController@{org.example.quizez.quizCreateControllers.CreateQuizSummaryController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller_a5512bea1e4605b03ac00bfc4d80d6bea}\label{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller_a5512bea1e4605b03ac00bfc4d80d6bea} 
+void {\bfseries init\+Data} (String quiz\+Name, String category, String difficulty, int duration, List$<$ \mbox{\hyperlink{classorg_1_1example_1_1quizez_1_1model_1_1_question}{Question}} $>$ questions)
+\begin{DoxyCompactList}\small\item\em get data regarding quiz (passed from previous controller) \end{DoxyCompactList}\item 
+\Hypertarget{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller_adf559b48d2c57a26c9da5fe6f6a7a4a4}\label{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller_adf559b48d2c57a26c9da5fe6f6a7a4a4} 
+void {\bfseries initialize} ()
+\begin{DoxyCompactList}\small\item\em initialize basic quiz info \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller_a4c1ebf8c0f819aac5b0f9d3decb3efaf}{on\+Save\+Quiz\+Data\+Button}} (Action\+Event event)
+\begin{DoxyCompactList}\small\item\em save data to database \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller_a24b57a8618bfa7b83bafc4e0ec2a84fd}{on\+Return\+Button\+Click}} (Action\+Event event)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller_a7c4eb937d3ad65209bfd819bb54707fa}\label{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller_a7c4eb937d3ad65209bfd819bb54707fa} 
+Button {\bfseries Return\+Button}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller_a24b57a8618bfa7b83bafc4e0ec2a84fd}\index{org.example.quizez.quizCreateControllers.CreateQuizSummaryController@{org.example.quizez.quizCreateControllers.CreateQuizSummaryController}!onReturnButtonClick@{onReturnButtonClick}}
+\index{onReturnButtonClick@{onReturnButtonClick}!org.example.quizez.quizCreateControllers.CreateQuizSummaryController@{org.example.quizez.quizCreateControllers.CreateQuizSummaryController}}
+\doxysubsubsection{\texorpdfstring{onReturnButtonClick()}{onReturnButtonClick()}}
+{\footnotesize\ttfamily \label{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller_a24b57a8618bfa7b83bafc4e0ec2a84fd} 
+void org.\+example.\+quizez.\+quiz\+Create\+Controllers.\+Create\+Quiz\+Summary\+Controller.\+on\+Return\+Button\+Click (\begin{DoxyParamCaption}\item[{Action\+Event}]{event}{}\end{DoxyParamCaption})}
+
+if no -\/ nothing happens\Hypertarget{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller_a4c1ebf8c0f819aac5b0f9d3decb3efaf}\index{org.example.quizez.quizCreateControllers.CreateQuizSummaryController@{org.example.quizez.quizCreateControllers.CreateQuizSummaryController}!onSaveQuizDataButton@{onSaveQuizDataButton}}
+\index{onSaveQuizDataButton@{onSaveQuizDataButton}!org.example.quizez.quizCreateControllers.CreateQuizSummaryController@{org.example.quizez.quizCreateControllers.CreateQuizSummaryController}}
+\doxysubsubsection{\texorpdfstring{onSaveQuizDataButton()}{onSaveQuizDataButton()}}
+{\footnotesize\ttfamily \label{classorg_1_1example_1_1quizez_1_1quiz_create_controllers_1_1_create_quiz_summary_controller_a4c1ebf8c0f819aac5b0f9d3decb3efaf} 
+void org.\+example.\+quizez.\+quiz\+Create\+Controllers.\+Create\+Quiz\+Summary\+Controller.\+on\+Save\+Quiz\+Data\+Button (\begin{DoxyParamCaption}\item[{Action\+Event}]{event}{}\end{DoxyParamCaption})}
+
+
+
+save data to database 
+
+transaction start
+
+save quiz and generate quiz\+ID
+
+question and answers prepared statements to pass into db
+
+for every question in a quiz
+
+save question
+
+save question answers
+
+commit changes into db
+
+close connection
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Szk\+Tech\+Projekty/\+Quiz\+Ez Project/\+Quiz\+Ez/src/main/java/org/example/quizez/quiz\+Create\+Controllers/Create\+Quiz\+Summary\+Controller.\+java\end{DoxyCompactItemize}
