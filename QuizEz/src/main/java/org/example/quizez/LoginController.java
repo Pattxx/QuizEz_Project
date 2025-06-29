@@ -20,21 +20,11 @@ public class LoginController {
     @FXML private PasswordField PasswordInputField;
     @FXML private Button LogInButton;
     @FXML private Button RegisterViewButton;
-    @FXML private CheckBox IsGuestCheckBox;
     @FXML private Label ErrorLabel;
 
     @FXML
     private void handleLogin(ActionEvent event) {
-        if(IsGuestCheckBox.isSelected()){
-            ///nothing now - just make stage change possible
-            Stage stage = SceneManager.getStageFrom(event.getSource());
-            ///TODO add DB quest logic
-            ///TODO uncomment when adis code is ready
-            /// SceneManager.switchScene(stage, "/org/example/quizez/main-view.fxml", null);
-        }
-
         ///normal log in
-        else {
             String username = UsernameInputField.getText();
             String password = PasswordInputField.getText();
 
@@ -64,7 +54,6 @@ public class LoginController {
             ErrorLabel.setVisible(true);
             ErrorLabel.setText("Nieprawidłowa nazwa użytkownika lub hasło.");
             }
-        }
     }
 
     public void onLogInButtonClick(ActionEvent event) {
@@ -95,7 +84,7 @@ public class LoginController {
         try {
             ///get stage from button
             Stage stage = SceneManager.getStageFrom(event.getSource());
-            //now switch active scene to temp
+            ///now switch active scene
             SceneManager.switchScene(stage, "/org/example/quizez/main-view.fxml", null);
 
         } catch (IOException e) {
@@ -105,22 +94,6 @@ public class LoginController {
             alert1.setContentText("Scene change failed");
             alert1.showAndWait();
         }
-    }
-    public void onIsGuestCheckBoxClick(ActionEvent event) {
-        boolean isGuest = IsGuestCheckBox.isSelected();
-
-        ///Disable login fields when isGuest
-        UsernameInputField.setDisable(isGuest);
-        PasswordInputField.setDisable(isGuest);
-
-        ///Also clear fields when isGuest
-
-        if(isGuest){
-            UsernameInputField.clear();
-            PasswordInputField.clear();
-        }
-
-        handleLogin(event);
     }
 
     private Integer authenticateUser(String username, String password) {
@@ -149,6 +122,5 @@ public class LoginController {
             return null; /// on error deny login
         }
     }
-
 
 }

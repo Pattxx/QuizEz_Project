@@ -11,10 +11,9 @@ public class UsersQuiz {
     public void onReturnClick(ActionEvent event) {
 
         try{
-            ///Get stage from clicked button - needed as argument for next
+
             Stage stage = SceneManager.getStageFrom(event.getSource());
 
-            ///Now change scene to previous: login-view.fxml
             SceneManager.switchScene(stage,"/org/example/quizez/main-view.fxml", null);
         } catch(IOException e){
             e.printStackTrace();

@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CategoryController implements Initializable {
-    ///
     @FXML VBox gry;
     @FXML VBox geografia;
     @FXML VBox religie;

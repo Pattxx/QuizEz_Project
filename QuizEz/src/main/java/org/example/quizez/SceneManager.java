@@ -21,7 +21,7 @@ public class SceneManager {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         if (title != null) {
-            stage.setTitle(title);
+            stage.setTitle("QuizEz");
         }
         stage.show();
     }
@@ -39,7 +39,7 @@ public class SceneManager {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         if (title != null) {
-            stage.setTitle(title);
+            stage.setTitle("QuizEz");
         }
         stage.show();
     }

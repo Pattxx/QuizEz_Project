@@ -12,6 +12,9 @@ import java.sql.ResultSet;
 
 public class CreateQuizController1 {
 
+    @FXML public Label QuizDifficultyLabel;
+    @FXML public Label QuizDurationLabel;
+    @FXML public Button ReturnButton;
     @FXML private Label CreateQuizLabel;
     @FXML private Label QuizNameLabel;
     @FXML private Label QuizCategoryLabel;

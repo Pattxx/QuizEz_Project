@@ -13,7 +13,6 @@
    <children>
       <TextField fx:id="UsernameInputField" layoutX="225.0" layoutY="149.0" promptText="Nazwa użytkownika" />
       <PasswordField fx:id="PasswordInputField" layoutX="225.0" layoutY="194.0" promptText="Hasło" />
-      <CheckBox fx:id="IsGuestCheckBox" layoutX="243.0" layoutY="241.0" mnemonicParsing="false" onAction="#onIsGuestCheckBoxClick" text="Używaj jako gość" />
       <Button fx:id="LogInButton" layoutX="275.0" layoutY="278.0" mnemonicParsing="false" onAction="#onLogInButtonClick" text="Zaloguj" />
       <Button fx:id="RegisterViewButton" layoutX="267.0" layoutY="388.0" mnemonicParsing="false" onAction="#onRegisterViewButtonClick" text="Zarejestruj" />
       <Label layoutX="224.0" layoutY="361.0" text="Nie masz konta? Stwórz nowe!" />
