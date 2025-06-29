@@ -36,6 +36,7 @@ public class ProfilController  implements Initializable  {
     @FXML private Label SredniWynik;
     @FXML private Label LiczbaQuiz;
     @FXML private ImageView Icon;
+    ///handle load
     public void initialize(URL url, ResourceBundle rb) {
         float liczQuiz=0;
         float srednia = 0;
@@ -97,6 +98,7 @@ public class ProfilController  implements Initializable  {
 
         }
     }
+    ///handle logout
     public void onWyloguj(ActionEvent event) {
 
         SessionController.logout();
@@ -139,6 +141,7 @@ public class ProfilController  implements Initializable  {
             System.err.println("Failed to create acc" + e.getMessage());
         }
     }
+    ///handle password change
     public void onChangePasswordClick(ActionEvent event){
         String newPassword = Password1.getText();
         String newRepeatPassword = Password2.getText();
@@ -155,7 +158,7 @@ public class ProfilController  implements Initializable  {
             ErrorLabel.setText("Hasła są różne!");
             return;
         }
-
+        ///change password and handle wheter succesful or not
         ErrorLabel.setText("");
         boolean success = ChangePassword(SessionController.getCurrentUserId().toString(), newPassword);
         if(success){
@@ -168,7 +171,7 @@ public class ProfilController  implements Initializable  {
             ErrorLabel.setText("Nie udało się zmienić hasła");
         }
     }
-
+    ///handle changing password
     private boolean ChangePassword(String id, String password){
         String insertNewUserDb = "UPDATE users SET password = ? WHERE id=?";
 

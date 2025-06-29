@@ -21,36 +21,33 @@ public class ResultController implements Initializable{
     private Label answered;
     @FXML
     private Label answeredPercent;
-
+    ///handle load
     public void initialize(URL location, ResourceBundle resources) {
-        ///getting the number of all questions
-
+        ///display info
         answered.setText( StaticController.correctAnswers+"/"+ StaticController.questionAmount);
         Float percent= ((float) StaticController.correctAnswers/ StaticController.questionAmount)*100;
         answeredPercent.setText(String.format("%.00f", percent)+"%");
-
-        String questionQuery = "INSERT INTO quiz_results (user_id, quiz_id, score, total_questions, correct_answers, percentage, date_taken) VALUES (?,?,?,?,?,?,?);";
-
-        try (Connection conn = Database.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(questionQuery)) {
-
-            stmt.setString(1, SessionController.currentUserId.toString());
-            stmt.setString(2, StaticController.QuizzId);
-            stmt.setInt(3, StaticController.correctAnswers);
-            stmt.setInt(4, StaticController.questionAmount);
-            stmt.setInt(5, StaticController.correctAnswers);
-            double perc = 100.0 * StaticController.correctAnswers / StaticController.questionAmount;
-            stmt.setDouble(6, perc);
-            String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
-            stmt.setString(7, timeStamp);
-
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        ///handle database insertion if not a guest
+        if ( !SessionController.isGuest()) {
+            String questionQuery = "INSERT INTO quiz_results (user_id, quiz_id, score, total_questions, correct_answers, percentage, date_taken) VALUES (?,?,?,?,?,?,?);";
+            try (Connection conn = Database.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(questionQuery)) {
+                stmt.setString(1, SessionController.currentUserId.toString());
+                stmt.setString(2, StaticController.QuizzId);
+                stmt.setInt(3, StaticController.correctAnswers);
+                stmt.setInt(4, StaticController.questionAmount);
+                stmt.setInt(5, StaticController.correctAnswers);
+                double perc = 100.0 * StaticController.correctAnswers / StaticController.questionAmount;
+                stmt.setDouble(6, perc);
+                String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
+                stmt.setString(7, timeStamp);
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+
     }
-
-
 
     ///Repeat the quizz
     public void onRepeatClick(ActionEvent event) {
@@ -75,10 +72,10 @@ public class ResultController implements Initializable{
     public void onMainMenuClick(ActionEvent event) {
 
         try {
-            ///Get stage from clicked button - needed as argument for next
+            ///Get stage from label - needed as argument for next
             Stage stage = SceneManager.getStageFrom(answered);
 
-            ///Now change scene to previous: login-view.fxml
+            ///Now change scene to main: main-view.fxml
             SceneManager.switchScene(stage, "/org/example/quizez/main-view.fxml", null);
 
         } catch (IOException e) {

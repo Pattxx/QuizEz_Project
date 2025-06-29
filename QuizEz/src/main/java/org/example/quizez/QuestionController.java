@@ -184,14 +184,14 @@ public class QuestionController implements Initializable {
         ///add radio button to the container
         AnswerContainer.getChildren().add(answerCorrectRadio);
     }
-
+    ///handle going back to menu
     public void onMainMenuClick(ActionEvent event) {
 
         try {
-            ///Get stage from clicked button - needed as argument for next
+            ///Get stage from label - needed as argument for next
             Stage stage = SceneManager.getStageFrom(AnswerContainer);
 
-            ///Now change scene to previous: login-view.fxml
+            ///Now change scene to main: main-view.fxml
             SceneManager.switchScene(stage, "/org/example/quizez/main-view.fxml", null);
 
         } catch (IOException e) {
@@ -206,9 +206,9 @@ public class QuestionController implements Initializable {
 
     private void toResult(){
         try{
-            ///Get stage from clicked button - needed as argument for next
+            ///Get stage from label - needed as argument for next
             Stage stage = SceneManager.getStageFrom(AnswerContainer);
-            ///Now change scene to previous: result-view.fxml
+            ///Now change scene to result: result-view.fxml
             SceneManager.switchScene(stage,"/org/example/quizez/result-view.fxml", null);
         } catch(IOException e){
             e.printStackTrace();

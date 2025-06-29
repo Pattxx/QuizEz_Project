@@ -111,8 +111,9 @@ public class RegisterViewController {
             return true; ///fail-safe
         }
     }
-
+    ///handle cuser creation
     private boolean createAccount(String username, String password){
+        /// insert username into user_profile table
         String insertNewUserDb = "INSERT INTO user_profile (display_name) VALUES (?)";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(insertNewUserDb)){
@@ -121,6 +122,7 @@ public class RegisterViewController {
         }catch(SQLException e){
             System.err.println("Failed to create acc" + e.getMessage());
         }
+        /// insert data into users table
         insertNewUserDb = "INSERT INTO users (username, password) VALUES (?, ?)";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(insertNewUserDb)){

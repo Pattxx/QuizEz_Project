@@ -35,6 +35,7 @@ public class MainController implements Initializable {
     @FXML
     ImageView Icon;
     @Override
+    ///handle load
     public void initialize(URL location, ResourceBundle resources) {
         if (SessionController.getCurrentUserId() == null) {
             /// not logged user - impossible
@@ -68,7 +69,7 @@ public class MainController implements Initializable {
             Icon.setImage(image);
         }
     }
-
+    ///Handle logout
     public void onWyloguj(ActionEvent event) {
         SessionController.logout();
 
@@ -87,7 +88,7 @@ public class MainController implements Initializable {
             alert1.showAndWait();
         }
     }
-
+    ///handle login click
     public void onLoginClick(ActionEvent event) {
         try {
             Stage stage = SceneManager.getStageFrom(Kategorie);
@@ -100,7 +101,7 @@ public class MainController implements Initializable {
             alert1.showAndWait();
         }
     }
-
+    ///handle register click
     public void onRegisterClick(ActionEvent event) {
         try {
             Stage stage = SceneManager.getStageFrom(Kategorie);
@@ -113,7 +114,7 @@ public class MainController implements Initializable {
             alert1.showAndWait();
         }
     }
-
+    ///handle click of kategorie/utworzQuiz/twojeQuizy/Profil
     public void onButtonClick(ActionEvent event) {
         try {
             String temp = "/org/example/quizez/main-view.fxml";
