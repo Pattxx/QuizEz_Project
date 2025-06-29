@@ -29,12 +29,10 @@ public class QuestionController implements Initializable {
     private VBox AnswerContainer;
     @FXML
     private Label QuestionXY;
-    private int questionAmount;
     private int answerAmount;
     private int control;
     private int offset=1;
     private String correctAnswer;
-    private int correctAnswers=0;
     private int answered;
     /// code activates on intialization to make sure first question is loaded
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,9 +40,9 @@ public class QuestionController implements Initializable {
         String questionQuery = "SELECT COUNT(*) FROM questions WHERE quiz_id = ?";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(questionQuery)) {
-            stmt.setString(1, "1");
+            stmt.setString(1, Static.QuizzId);
             ResultSet questionSet = stmt.executeQuery();
-            questionAmount=questionSet.getInt(1);
+            Static.questionAmount=questionSet.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,7 +50,7 @@ public class QuestionController implements Initializable {
         questionQuery = "SELECT id, text FROM questions WHERE quiz_id = ?";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(questionQuery)) {
-            stmt.setString(1, "1");
+            stmt.setString(1, Static.QuizzId);
             ResultSet questionSet = stmt.executeQuery();
             questionSet.getFetchSize();
             Question.setText(questionSet.getString("text"));
@@ -62,7 +60,7 @@ public class QuestionController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        QuestionXY.setText("Pytanie"+ 1+" z "+ questionAmount);
+        QuestionXY.setText("Pytanie"+ 1+" z "+  Static.questionAmount);
     }
     /// handling generation of answers
     private void handleAnswer() {
@@ -107,13 +105,13 @@ public class QuestionController implements Initializable {
         if(selected!=null) {
             ///checking if the answer is correct
             if (Objects.equals(selected.getText(), correctAnswer)) {
-                correctAnswers++;
+                Static.correctAnswers++;
             }
             /// clearing previous answers and updating displays
             AnswerContainer.getChildren().clear();
             ProgressPytania.setProgress((1f/answerAmount)*offset);
             handleQuestion();
-            QuestionXY.setText("Pytanie"+offset+" z "+ questionAmount);
+            QuestionXY.setText("Pytanie"+offset+" z "+  Static.questionAmount);
 
         }
 
@@ -123,9 +121,7 @@ public class QuestionController implements Initializable {
         String questionQuery = "SELECT id, text FROM questions WHERE quiz_id = ?";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(questionQuery)) {
-
-            stmt.setString(1, "1");
-
+            stmt.setString(1, Static.QuizzId);
             ResultSet questionSet = stmt.executeQuery();
             /// question offset
             for(int i=0; i<offset;i++){
@@ -164,5 +160,24 @@ public class QuestionController implements Initializable {
 
         ///add radio button to the container
         AnswerContainer.getChildren().add(answerCorrectRadio);
+    }
+
+    public void onMainMenuClick(ActionEvent event) {
+
+        try {
+            ///Get stage from clicked button - needed as argument for next
+            Stage stage = SceneManager.getStageFrom(answered);
+
+            ///Now change scene to previous: login-view.fxml
+            SceneManager.switchScene(stage, "/org/example/quizez/main-view.fxml", null);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setHeaderText(null);
+            alert1.setContentText("Scene change failed");
+            alert1.showAndWait();
+
+        }
     }
 }
