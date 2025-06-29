@@ -1,5 +1,5 @@
 package org.example.quizez;
-
+import java.util.function.Consumer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,6 +25,25 @@ public class SceneManager {
         }
         stage.show();
     }
+
+
+    ///version of switchScene that can expose data from previous controller to the next (method overload)
+    public static void switchScene(Stage stage, String fxmlPath, String title, Consumer<FXMLLoader> loaderHandler) throws IOException {
+        FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlPath));
+        Parent root = loader.load();
+
+        if (loaderHandler != null) {
+            loaderHandler.accept(loader);
+        }
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        if (title != null) {
+            stage.setTitle(title);
+        }
+        stage.show();
+    }
+
 
     /**
      * Pomocnicza metoda do pobrania Stage z kontrolera.

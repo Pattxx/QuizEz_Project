@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.CreateQuizController2">
    <children>
-      <TextArea fx:id="QuestionTextArea" layoutX="65.0" layoutY="33.0" prefHeight="123.0" prefWidth="456.0" text="Wpisz treść pytania" />
-      <VBox fx:id="answersContainer" layoutX="65.0" layoutY="186.0" prefHeight="133.0" prefWidth="456.0" spacing="5" />
+      <TextArea fx:id="QuestionTextArea" layoutX="65.0" layoutY="63.0" prefHeight="94.0" prefWidth="456.0" text="Wpisz treść pytania" />
+      <VBox fx:id="answersContainer" layoutX="65.0" layoutY="208.0" prefHeight="112.0" prefWidth="456.0" spacing="5" />
       <!--HBOX ANSWERS ADDED DYNAMICALLY-->
-      <Button fx:id="AddMoreAnswsersButton" onAction="#onAddMoreAnswsersButtonClick" layoutX="238.0" layoutY="333.0" mnemonicParsing="false" text="Dodaj odpowiedź" />
-      <Button fx:id="SaveQuizButton" onAction="#onSaveQuestionButtonClick" layoutX="495.0" layoutY="346.0" mnemonicParsing="false" text="Zapisz pytanie" />
+      <Button fx:id="AddMoreAnswsersButton" layoutX="238.0" layoutY="174.0" mnemonicParsing="false" onAction="#onAddMoreAnswsersButtonClick" text="Dodaj odpowiedź" />
+      <Button fx:id="SaveQuizButton" layoutX="247.0" layoutY="334.0" mnemonicParsing="false" onAction="#onSaveQuestionButtonClick" text="Zapisz pytanie" />
+      <Button fx:id="GoToSummaryButton" layoutX="429.0" layoutY="334.0" mnemonicParsing="false" onAction="#onGoToSummaryButtonClick" text="Podsumowanie" />
+      <Label fx:id="WarningLabel" layoutX="286.0" layoutY="27.0"  text="Dodaj przynajmniej jedno pytanie, aby kontynuować" visible="false" style="-fx-text-fill: red;" />
    </children>
 </AnchorPane>

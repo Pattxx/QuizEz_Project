@@ -1,20 +1,45 @@
 package org.example.quizez;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.Node;
+import javafx.stage.Stage;
+import org.example.quizez.net.sqlitetuorial.Database;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class CreateQuizController2 {
 
-    @FXML
-    private TextArea QuestionTextArea;
-    @FXML
-    private VBox answersContainer;
-    @FXML
-    private Button AddMoreAnswsersButton;
-    @FXML
-    private Button SaveQuizButton;
+    private List<Question> questionList = new ArrayList<>();
+    private String quizName;
+    private String category;
+    private String difficulty;
+    private int duration;
+
+    ///initialize passed data from previous view
+    public void initData(String quizName, String category, String difficulty, int duration){
+        this.quizName = quizName;
+        this.category = category;
+        this.difficulty = difficulty;
+        this.duration = duration;
+    }
+
+
+    @FXML private TextArea QuestionTextArea;
+    @FXML private VBox answersContainer;
+    @FXML private Button AddMoreAnswsersButton;
+    @FXML private Button SaveQuizButton;
+    @FXML private Button GoToSummaryButton;
+    @FXML private Label WarningLabel;
+
 
     ///ToggleGroup used to determine which one of the answers is correct
     private ToggleGroup AnswserCorrectToggle = new ToggleGroup();
@@ -25,6 +50,9 @@ public class CreateQuizController2 {
 
     ///On load add 2 answer containers
     public void initialize() {
+        WarningLabel.setVisible(true);
+        GoToSummaryButton.setDisable(true);
+
         for (int i = 0; i < MIN_ANSWERS; i++) {
             addAnswerBlock();
         }
@@ -44,10 +72,47 @@ public class CreateQuizController2 {
     @FXML
     private void onSaveQuestionButtonClick() {
         ///By default, quiz will be saved with only one question
-        ///question textfield must not be empty, answer (child) must not be empty
-        boolean validationSuccess = validateInputs();
-        if(validationSuccess){
-            SaveQuestionData();
+        /// question textfield must not be empty, answer (child) must not be empty
+        if(validateInputs()){
+            /// get quiz question
+            String questionText = QuestionTextArea.getText();
+
+            /// get quiz answers
+            List<Answer> answers = new ArrayList<>();
+            for (Node node : answersContainer.getChildren()) {
+                if (node instanceof HBox hBox) {
+                    RadioButton radio = (RadioButton) hBox.getChildren().get(0);
+                    TextField answerField = (TextField) hBox.getChildren().get(1);
+
+                    String answerText = answerField.getText();
+                    boolean isCorrect = radio.isSelected();
+
+                    answers.add(new Answer(answerText, isCorrect));
+                }
+            }
+            ///add that question to questions list
+            Question q = new Question(questionText, answers);
+            questionList.add(q);
+
+            ///clean all inputs for next question
+            QuestionTextArea.clear();
+            answersContainer.getChildren().clear();
+            for (int i = 0; i < MIN_ANSWERS; i++) {
+                addAnswerBlock();
+            }
+            AnswserCorrectToggle.selectToggle(null);
+
+            if (questionList.size() >= 1) {
+                GoToSummaryButton.setDisable(false);
+                WarningLabel.setVisible(false);
+            }
+
+            ///confirm question was added
+            //TODO: change to label lol
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Pytanie dodane pomyślnie");
+            alert.showAndWait();
         }
         else{
             Alert errAlert = new Alert(Alert.AlertType.ERROR);
@@ -55,7 +120,6 @@ public class CreateQuizController2 {
             errAlert.setContentText("Uzupełnij tekst pytania przed zapisem");
             errAlert.showAndWait();
         }
-
     }
 
 
@@ -127,8 +191,15 @@ public class CreateQuizController2 {
                 AnswserCorrectToggle.selectToggle((Toggle) ((HBox) answersContainer.getChildren().get(0)).getChildren().get(0));
             }
         }
+    }
 
+    @FXML
+    public void onGoToSummaryButtonClick(ActionEvent event) throws IOException {
+        Stage stage = SceneManager.getStageFrom(event.getSource());
 
-
+        SceneManager.switchScene(stage, "/org/example/quizez/createQuizSummary-view.fxml", "Podsumowanie quizu", loader -> {
+            CreateQuizSummaryController controller = loader.getController();
+            controller.initData(quizName, category, difficulty, duration, questionList);
+        });
     }
 }
