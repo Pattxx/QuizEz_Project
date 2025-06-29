@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.ResultController">
+<AnchorPane prefWidth="1280" prefHeight="720" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.ResultController">
    <children>
       <Button layoutX="230.0" layoutY="176.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="105.0" text="Zagraj Ponownie" onAction="#onRepeatClick"/>
       <Button layoutX="199.0" layoutY="238.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="167.0" text="Powrót do ekranu głównego" onAction="#onMainMenuClick" />

@@ -5,7 +5,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.CreateQuizSummaryController">
+<AnchorPane  prefWidth="1280" prefHeight="720" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.CreateQuizSummaryController">
    <children>
       <ListView fx:id="questionListView" layoutX="46.0" layoutY="100.0" prefHeight="200.0" prefWidth="508.0" />
       <Button fx:id="SaveQuizDataButton" layoutX="478.0" layoutY="335.0" mnemonicParsing="false" onAction="#onSaveQuizDataButton" text="Zapisz quiz" />

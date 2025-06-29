@@ -9,7 +9,7 @@
 <?import javafx.scene.control.Button?>
 
 <?import javafx.geometry.Insets?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.QuestionController">
+<AnchorPane prefWidth="1280" prefHeight="720" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.QuestionController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3a88b2" height="150.0" layoutX="-12.0" layoutY="-122.0" stroke="BLACK" strokeType="INSIDE" width="639.0" />
       <ProgressBar fx:id="ProgressPytania" layoutX="286.0" layoutY="3.0" prefHeight="22.0" prefWidth="238.0" progress="0.0" />

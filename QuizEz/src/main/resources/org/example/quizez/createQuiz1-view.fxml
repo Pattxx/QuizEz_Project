@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.CreateQuizController1">
+<AnchorPane prefWidth="1280" prefHeight="720" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.CreateQuizController1">
    <children>
       <Label fx:id="CreateQuizLabel" layoutX="235.0" layoutY="24.0" text="Utwórz nowy quiz" />
       <TextField fx:id="QuizNameField" layoutX="208.0" layoutY="99.0" />

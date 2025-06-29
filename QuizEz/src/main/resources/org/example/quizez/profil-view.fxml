@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.ProfilController">
+<AnchorPane  prefWidth="1280" prefHeight="720" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.ProfilController">
    <children>
       <Button mnemonicParsing="false" onAction="#onReturnClick" prefHeight="55.0" prefWidth="104.0" text="Powrót" />
       <Label layoutX="392.0" layoutY="1.0" text="Nazwa Użytkownika">

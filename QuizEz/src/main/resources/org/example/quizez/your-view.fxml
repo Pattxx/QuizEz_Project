@@ -7,8 +7,8 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.layout.VBox?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/23.0.1"
+<AnchorPane  prefWidth="1280" prefHeight="720"
+            xmlns="http://javafx.com/javafx/17.0.6"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.example.quizez.UsersQuiz">
     <children>
