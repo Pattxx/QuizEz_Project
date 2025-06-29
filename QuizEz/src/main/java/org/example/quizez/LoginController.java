@@ -20,7 +20,7 @@ public class LoginController {
     @FXML private PasswordField PasswordInputField;
     @FXML private Button LogInButton;
     @FXML private Button RegisterViewButton;
-    @FXML private Label ErrorLabel;
+    @FXML public Label ErrorLabel;
 
     @FXML
     private void handleLogin(ActionEvent event) {
