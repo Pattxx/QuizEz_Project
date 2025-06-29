@@ -1,6 +1,8 @@
 package org.example.quizez.net.sqlitetuorial;
 
 
+import org.example.quizez.Quiz;
+
 import java.sql.*;
 
 public class Database {
@@ -37,5 +39,27 @@ public class Database {
             System.err.println("Connection failed :(" + e.getMessage());
         }
     }
+
+    public static boolean updateQuiz(int quizId, String name, String category, String difficulty, int duration) {
+        String query = "UPDATE quizzes SET title = ?, category = ?, difficulty = ?, time_limit = ? WHERE id = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, name);
+            stmt.setString(2, category);
+            stmt.setString(3, difficulty);
+            stmt.setInt(4, duration);
+            stmt.setInt(5, quizId);
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Failed to update quiz: " + e.getMessage());
+            return false;
+        }
+    }
+
 }
 

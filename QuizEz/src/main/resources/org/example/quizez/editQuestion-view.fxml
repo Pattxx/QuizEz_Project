@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.quizez.EditQuestionController"
+      spacing="10" prefWidth="700" prefHeight="400">
+
+    <ListView fx:id="questionsListView" prefWidth="200" />
+
+    <VBox spacing="10" prefWidth="500">
+        <Label text="Treść pytania:"/>
+        <TextArea fx:id="questionTextArea" prefHeight="100" wrapText="true"/>
+
+        <Label text="Odpowiedzi:"/>
+        <VBox fx:id="answersContainer" spacing="5"/>
+
+        <HBox spacing="10">
+            <Button text="Dodaj odpowiedź" onAction="#onAddAnswer"/>
+            <Button text="Zapisz pytanie" onAction="#onSaveQuestion"/>
+        </HBox>
+        <Button fx:id="ReturnButton" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#onReturnButtonClick" text="Wróć" />
+
+    </VBox>
+</HBox>
