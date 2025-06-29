@@ -8,6 +8,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -21,6 +23,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.EventObject;
 import java.util.ResourceBundle;
 
@@ -31,7 +35,7 @@ public class ProfilController  implements Initializable  {
     @FXML private VBox Quizy;
     @FXML private Label SredniWynik;
     @FXML private Label LiczbaQuiz;
-
+    @FXML private ImageView Icon;
     public void initialize(URL url, ResourceBundle rb) {
         float liczQuiz=0;
         float srednia = 0;
@@ -51,16 +55,29 @@ public class ProfilController  implements Initializable  {
                 HBox record = new HBox();
                 record.getChildren().addAll(new Label(rs.getString("title")), new Label(rs.getString("category")), new Label(rs.getString("percentage")), new Label(rs.getString("date_taken")));
                 Quizy.getChildren().add(record);
-                srednia=Float.valueOf(rs.getString("percentage"));
+                srednia+=Float.valueOf(rs.getString("percentage"));
             }
-            LiczbaQuiz.setText(Float.toString(liczQuiz));
-            SredniWynik.setText(Float.toString(srednia/liczQuiz));
+            LiczbaQuiz.setText(String.format("%.00f", liczQuiz));
+            SredniWynik.setText(String.format("%.00f", srednia/liczQuiz)+"%");
         }
         catch (SQLException e){
             System.err.println("Connection failed :(" + e.getMessage());
         }
-
-
+        ///setting icon
+        DbUsernameCheckQuery = "Select avatar_path FROM user_profile WHERE user_id = ?";
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt =conn.prepareStatement(DbUsernameCheckQuery)){
+            stmt.setInt(1, SessionController.currentUserId);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.getString("avatar_path")!=""){
+                StaticController.IconPath=rs.getString("avatar_path");
+            }
+        }
+        catch (SQLException e){
+            System.err.println("Connection failed :(" + e.getMessage());
+        }
+        Image image = new Image(StaticController.IconPath);
+        Icon.setImage(image);
     }
 
     public void onReturnClick(ActionEvent event) {
@@ -99,6 +116,29 @@ public class ProfilController  implements Initializable  {
         }
 
     }
+    /// Icon change handler
+    public void onNewIcon(ActionEvent event) {
+        String URL="file:data/dog.jpg";
+        String path = event.getSource().toString();
+        System.out.println(path);
+        /// different icon depending on clicked menu element
+        if (path.contains("id=Pies")) URL="file:data/dog.jpg";
+        else if (path.contains("id=Kot")) URL="file:data/cat.jpg";
+        else if (path.contains("id=Ryba")) URL="file:data/feesh.jpg";
+        else if (path.contains("id=Golab")) URL="file:data/glab.jpg";
+        Image image = new Image(URL);
+        Icon.setImage(image);
+        /// inserting path into user_profile
+        String insertAvatarPathQuery = "UPDATE user_profile SET avatar_path = ? WHERE user_id=?";
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(insertAvatarPathQuery)){
+            stmt.setString(1, URL);
+            stmt.setInt(2, SessionController.currentUserId);
+            stmt.executeUpdate();
+        }catch(SQLException e){
+            System.err.println("Failed to create acc" + e.getMessage());
+        }
+    }
     public void onChangePasswordClick(ActionEvent event){
         String newPassword = Password1.getText();
         String newRepeatPassword = Password2.getText();
@@ -115,7 +155,6 @@ public class ProfilController  implements Initializable  {
             ErrorLabel.setText("Hasła są różne!");
             return;
         }
-
 
         ErrorLabel.setText("");
         boolean success = ChangePassword(SessionController.getCurrentUserId().toString(), newPassword);
@@ -135,13 +174,10 @@ public class ProfilController  implements Initializable  {
 
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(insertNewUserDb)){
-
             stmt.setString(1, password);
-            stmt.setString(2, id);
-
+            stmt.setInt(2, SessionController.currentUserId);
             int rowsInserted = stmt.executeUpdate();
             return rowsInserted > 0; ///if true then it's a success
-
         }catch(SQLException e){
             System.err.println("Failed to create acc" + e.getMessage());
             return false; ///fail-safe

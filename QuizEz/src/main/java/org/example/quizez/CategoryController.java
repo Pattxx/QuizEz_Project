@@ -33,32 +33,31 @@ public class CategoryController implements Initializable {
     @FXML VBox nauki;
     @FXML VBox nieokreslone;
     /// Array lists will be needed for automation
-    ArrayList<String> categ = new ArrayList<String>();
-    ArrayList<VBox> contain = new ArrayList<VBox>();
     Map<String, String> hboxMap = new HashMap<String, String>();
-
+    Map<String, VBox> categMap = new HashMap<String, VBox>();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        categ.add("Gry wideo");     contain.add(gry);
-        categ.add("Geografia");     contain.add(geografia);
-        categ.add("Religie świata");contain.add(religie);
-        categ.add("Filmy i seriale");contain.add(filmy);
-        categ.add("Historia świata");contain.add(historia);
-        categ.add("Kosmos");        contain.add(kosmos);
-        categ.add("Nauki ścisłe");  contain.add(nauki);
-       // categ.add("Nieokreślone"); contain.add(nieokreslone);
+        categMap.put("Gry wideo", gry);
+        categMap.put("Geografia", geografia);
+        categMap.put("Religie świata", religie);
+        categMap.put("Filmy i seriale", filmy);
+        categMap.put("Historia świata", historia);
+        categMap.put("Kosmos", kosmos);
+        categMap.put("Nauki ścisłe", nauki);
+        //categMap.put("Nieokreślone", nieokreslone);
         /// loops thorugh every Category
-        for(int i=0;i<categ.size();i++){
+        for (var entry : categMap.entrySet()) {
+            System.out.println(entry.getKey() + "/" + entry.getValue());
             String DbUsernameCheckQuery = "Select * FROM quizzes WHERE category = ?";
             try (Connection conn = Database.getConnection();
                 PreparedStatement stmt =conn.prepareStatement(DbUsernameCheckQuery)){
 
-                stmt.setString(1, categ.get(i));
+                stmt.setString(1, entry.getKey());
                 ResultSet rs = stmt.executeQuery();
                     ///adds header in every category
                 HBox temp = new HBox();
                 temp.getChildren().addAll(new Label("title "), new Label("difficulty "), new Label("creator_id "));
-                contain.get(i).getChildren().add(temp);
+                entry.getValue().getChildren().add(temp);
                 /// loops through every element iun table and adds it to correct VBox
                 while(rs.next()) {
                     HBox record = new HBox();
@@ -84,7 +83,7 @@ public class CategoryController implements Initializable {
                         }
                     });
                     record.getChildren().addAll(new Label(rs.getString("title")), new Label(rs.getString("difficulty"), new Label(rs.getString("creator_id"))));
-                    contain.get(i).getChildren().add(record);
+                    entry.getValue().getChildren().add(record);
                 }
             }
             catch (SQLException e){

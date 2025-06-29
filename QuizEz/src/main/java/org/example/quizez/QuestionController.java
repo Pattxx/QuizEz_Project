@@ -1,4 +1,5 @@
 package org.example.quizez;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,12 +17,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class QuestionController implements Initializable {
     @FXML
     private ToggleGroup Quest;
     @FXML
     private ProgressBar ProgressPytania;
+    @FXML
+    private Label QuizTime;
+    @FXML
+    private Label QuizName;
     @FXML
     private Text Question;
     @FXML
@@ -32,11 +39,40 @@ public class QuestionController implements Initializable {
     private int control;
     private int offset=1;
     private String correctAnswer;
+    int temp;
+    Timer timer=new Timer();
 
     /// code activates on intialization to make sure first question is loaded
     public void initialize(URL location, ResourceBundle resources) {
+        String questionQuery = "SELECT title, time_limit FROM quizzes WHERE id = ?";
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(questionQuery)) {
+            stmt.setString(1, StaticController.QuizzId);
+            ResultSet questionSet = stmt.executeQuery();
+            questionSet.getFetchSize();
+            QuizName.setText(questionSet.getString("title"));
+            temp= questionSet.getInt("time_limit");
+            System.out.println(questionSet.getInt("time_limit"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ///ustawienie Timera quizu
+        TimerTask task=new TimerTask() {
+            int count=temp;
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    QuizTime.setText("Time:"+Integer.toString(count));
+                });
+                count--;
+                if(count==0){
+                    toResult();
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(task,0,60000);
         ///getting the number of all questions
-        String questionQuery = "SELECT COUNT(*) FROM questions WHERE quiz_id = ?";
+        questionQuery = "SELECT COUNT(*) FROM questions WHERE quiz_id = ?";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(questionQuery)) {
             stmt.setString(1, StaticController.QuizzId);
@@ -61,6 +97,7 @@ public class QuestionController implements Initializable {
         }
         QuestionXY.setText("Pytanie"+ 1+" z "+  StaticController.questionAmount);
     }
+
     /// handling generation of answers
     private void handleAnswer() {
         String conStr = Integer.toString(control);
@@ -78,7 +115,6 @@ public class QuestionController implements Initializable {
         String answerQuery = "SELECT text, is_correct FROM Answers WHERE question_id = ?";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(answerQuery)) {
-
             stmt.setString(1, conStr);
             ResultSet answerRs = stmt.executeQuery();
             answerRs.next();
@@ -127,19 +163,7 @@ public class QuestionController implements Initializable {
                 questionSet.next();
             }
             if(!questionSet.next()){
-                try{
-                    ///Get stage from clicked button - needed as argument for next
-                    Stage stage = SceneManager.getStageFrom(AnswerContainer);
-                    ///Now change scene to previous: result-view.fxml
-                    SceneManager.switchScene(stage,"/org/example/quizez/result-view.fxml", null);
-                } catch(IOException e){
-                    e.printStackTrace();
-                    Alert alert1 = new Alert(Alert.AlertType.ERROR);
-                    alert1.setHeaderText(null);
-                    alert1.setContentText("Scene change failed");
-                    alert1.showAndWait();
-
-                }
+                toResult();
             }
             Question.setText(questionSet.getString("text"));
             control = questionSet.getInt(1);
@@ -171,6 +195,22 @@ public class QuestionController implements Initializable {
             SceneManager.switchScene(stage, "/org/example/quizez/main-view.fxml", null);
 
         } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setHeaderText(null);
+            alert1.setContentText("Scene change failed");
+            alert1.showAndWait();
+
+        }
+    }
+
+    private void toResult(){
+        try{
+            ///Get stage from clicked button - needed as argument for next
+            Stage stage = SceneManager.getStageFrom(AnswerContainer);
+            ///Now change scene to previous: result-view.fxml
+            SceneManager.switchScene(stage,"/org/example/quizez/result-view.fxml", null);
+        } catch(IOException e){
             e.printStackTrace();
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
             alert1.setHeaderText(null);

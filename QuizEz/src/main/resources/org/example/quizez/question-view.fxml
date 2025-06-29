@@ -24,8 +24,8 @@
       <VBox fx:id="AnswerContainer" layoutX="20.0" layoutY="127.0" prefHeight="200.0" prefWidth="554.0">
 
       </VBox>
-      <Label layoutX="155.0" layoutY="6.0" text="Timer:" />
-      <Label fx:id="Quizname" layoutX="14.0" layoutY="6.0" text="Nazwa Quizu" />
+      <Label  fx:id="QuizTime" layoutX="155.0" layoutY="6.0" text="Timer:" />
+      <Label fx:id="QuizName" layoutX="14.0" layoutY="6.0" text="Nazwa Quizu" />
       <Label fx:id="QuestionXY" layoutX="534.0" layoutY="6.0" text=" Pytanie X z Y" />
    </children>
 </AnchorPane>

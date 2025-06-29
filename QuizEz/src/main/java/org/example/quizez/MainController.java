@@ -1,15 +1,26 @@
 package org.example.quizez;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import org.example.quizez.net.sqlitetuorial.Database;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -21,7 +32,8 @@ public class MainController implements Initializable {
     private MenuItem Wyloguj;
     @FXML
     private Button Kategorie;
-
+    @FXML
+    ImageView Icon;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (SessionController.getCurrentUserId() == null) {
@@ -39,6 +51,21 @@ public class MainController implements Initializable {
             Zaloguj.setDisable(true);
             Zarejestruj.setDisable(true);
             Wyloguj.setDisable(false);
+            ///setting icon
+            String DbUsernameCheckQuery = "Select avatar_path FROM user_profile WHERE user_id = ?";
+            try (Connection conn = Database.getConnection();
+                 PreparedStatement stmt =conn.prepareStatement(DbUsernameCheckQuery)){
+                stmt.setInt(1, SessionController.currentUserId);
+                ResultSet rs = stmt.executeQuery();
+                if(rs.getString("avatar_path")!=""){
+                    StaticController.IconPath=rs.getString("avatar_path");
+                }
+            }
+            catch (SQLException e){
+                System.err.println("Connection failed :(" + e.getMessage());
+            }
+            Image image = new Image(StaticController.IconPath);
+            Icon.setImage(image);
         }
     }
 

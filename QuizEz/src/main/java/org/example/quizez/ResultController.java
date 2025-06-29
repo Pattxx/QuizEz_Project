@@ -48,7 +48,7 @@ public class ResultController implements Initializable{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        }
+    }
 
 
 
