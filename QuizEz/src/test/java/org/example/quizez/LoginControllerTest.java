@@ -24,13 +24,14 @@ class LoginControllerTest extends ApplicationTest {
         stage.setScene(scene);
         stage.show();
     }
-
+    ///tests if correct information is given in case user does not put in any information
     @Test
     void testEmptyFieldsShowsError() {
         clickOn("#LogInButton");
         assertTrue(controller.ErrorLabel.isVisible());
         assertEquals("Wypełnij wszystkie pola!", controller.ErrorLabel.getText());
     }
+    ///tests f correct information is given in case user puts in wrong credentials
     @Test
     void shouldShowError(FxRobot robot) {
         // Type in wrong username
