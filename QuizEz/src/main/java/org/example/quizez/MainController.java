@@ -58,7 +58,7 @@ public class MainController implements Initializable {
                  PreparedStatement stmt =conn.prepareStatement(DbUsernameCheckQuery)){
                 stmt.setInt(1, SessionController.currentUserId);
                 ResultSet rs = stmt.executeQuery();
-                if(rs.getString("avatar_path")!=""){
+                if(rs.getString("avatar_path" )!= null){
                     StaticController.IconPath=rs.getString("avatar_path");
                 }
             }
