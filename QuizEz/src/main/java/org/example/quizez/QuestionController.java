@@ -3,7 +3,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -33,16 +32,16 @@ public class QuestionController implements Initializable {
     private int control;
     private int offset=1;
     private String correctAnswer;
-    private int answered;
+
     /// code activates on intialization to make sure first question is loaded
     public void initialize(URL location, ResourceBundle resources) {
         ///getting the number of all questions
         String questionQuery = "SELECT COUNT(*) FROM questions WHERE quiz_id = ?";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(questionQuery)) {
-            stmt.setString(1, Static.QuizzId);
+            stmt.setString(1, StaticController.QuizzId);
             ResultSet questionSet = stmt.executeQuery();
-            Static.questionAmount=questionSet.getInt(1);
+            StaticController.questionAmount=questionSet.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -50,7 +49,7 @@ public class QuestionController implements Initializable {
         questionQuery = "SELECT id, text FROM questions WHERE quiz_id = ?";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(questionQuery)) {
-            stmt.setString(1, Static.QuizzId);
+            stmt.setString(1, StaticController.QuizzId);
             ResultSet questionSet = stmt.executeQuery();
             questionSet.getFetchSize();
             Question.setText(questionSet.getString("text"));
@@ -60,7 +59,7 @@ public class QuestionController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        QuestionXY.setText("Pytanie"+ 1+" z "+  Static.questionAmount);
+        QuestionXY.setText("Pytanie"+ 1+" z "+  StaticController.questionAmount);
     }
     /// handling generation of answers
     private void handleAnswer() {
@@ -105,13 +104,13 @@ public class QuestionController implements Initializable {
         if(selected!=null) {
             ///checking if the answer is correct
             if (Objects.equals(selected.getText(), correctAnswer)) {
-                Static.correctAnswers++;
+                StaticController.correctAnswers++;
             }
             /// clearing previous answers and updating displays
             AnswerContainer.getChildren().clear();
             ProgressPytania.setProgress((1f/answerAmount)*offset);
             handleQuestion();
-            QuestionXY.setText("Pytanie"+offset+" z "+  Static.questionAmount);
+            QuestionXY.setText("Pytanie"+offset+" z "+  StaticController.questionAmount);
 
         }
 
@@ -121,7 +120,7 @@ public class QuestionController implements Initializable {
         String questionQuery = "SELECT id, text FROM questions WHERE quiz_id = ?";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(questionQuery)) {
-            stmt.setString(1, Static.QuizzId);
+            stmt.setString(1, StaticController.QuizzId);
             ResultSet questionSet = stmt.executeQuery();
             /// question offset
             for(int i=0; i<offset;i++){
@@ -166,7 +165,7 @@ public class QuestionController implements Initializable {
 
         try {
             ///Get stage from clicked button - needed as argument for next
-            Stage stage = SceneManager.getStageFrom(answered);
+            Stage stage = SceneManager.getStageFrom(AnswerContainer);
 
             ///Now change scene to previous: login-view.fxml
             SceneManager.switchScene(stage, "/org/example/quizez/main-view.fxml", null);

@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -69,7 +68,7 @@ public class CategoryController implements Initializable {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             try{
-                                Static.QuizzId=hboxMap.get(mouseEvent.getSource().toString());
+                                StaticController.QuizzId=hboxMap.get(mouseEvent.getSource().toString());
                                 ///get stage from button
                                 Stage stage = SceneManager.getStageFrom(mouseEvent.getSource());
                                 //now switch active scene to temp

@@ -11,9 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.ResourceBundle;
@@ -27,8 +25,8 @@ public class ResultController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         ///getting the number of all questions
 
-        answered.setText( Static.correctAnswers+"/"+ Static.questionAmount);
-        Float percent= ((float)Static.correctAnswers/ Static.questionAmount)*100;
+        answered.setText( StaticController.correctAnswers+"/"+ StaticController.questionAmount);
+        Float percent= ((float) StaticController.correctAnswers/ StaticController.questionAmount)*100;
         answeredPercent.setText(String.format("%.00f", percent)+"%");
 
         String questionQuery = "INSERT INTO quiz_results (user_id, quiz_id, score, total_questions, correct_answers, percentage, date_taken) VALUES (?,?,?,?,?,?,?);";
@@ -37,11 +35,11 @@ public class ResultController implements Initializable{
              PreparedStatement stmt = conn.prepareStatement(questionQuery)) {
 
             stmt.setString(1, SessionController.currentUserId.toString());
-            stmt.setString(2, Static.QuizzId);
-            stmt.setInt(3, Static.correctAnswers);
-            stmt.setInt(4, Static.questionAmount);
-            stmt.setInt(5, Static.correctAnswers);
-            double perc = 100.0 * Static.correctAnswers / Static.questionAmount;
+            stmt.setString(2, StaticController.QuizzId);
+            stmt.setInt(3, StaticController.correctAnswers);
+            stmt.setInt(4, StaticController.questionAmount);
+            stmt.setInt(5, StaticController.correctAnswers);
+            double perc = 100.0 * StaticController.correctAnswers / StaticController.questionAmount;
             stmt.setDouble(6, perc);
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
             stmt.setString(7, timeStamp);

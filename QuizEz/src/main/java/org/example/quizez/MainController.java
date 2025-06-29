@@ -96,6 +96,17 @@ public class MainController implements Initializable {
 
             if (path.contains("id=Kategorie")) {
                 temp = "/org/example/quizez/category-view.fxml";
+                if (SessionController.getCurrentUserId() != null && !SessionController.isGuest()) {
+                    temp = "/org/example/quizez/createQuiz1-view.fxml";
+                } else {
+                    // guest or not logged in -> tell them to log in
+                    boolean confirmed = showLoginRequiredAlert();
+                    if (confirmed) {
+                        temp = "/org/example/quizez/login-view.fxml";
+                    } else {
+                        return; ///do nothing
+                    }
+                }
 
             } else if (path.contains("id=utworzQuiz")) {
                 if (SessionController.getCurrentUserId() != null && !SessionController.isGuest()) {

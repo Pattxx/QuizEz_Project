@@ -1,6 +1,6 @@
 package org.example.quizez;
 
-public class Static {
+public class StaticController {
     public static int questionAmount=1;
     public static  int correctAnswers=0;
     public static  String QuizzId="1";
