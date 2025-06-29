@@ -2,11 +2,11 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.VBox?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.ProfilController">
    <children>
       <Button mnemonicParsing="false" onAction="#onReturnClick" prefHeight="55.0" prefWidth="104.0" text="Powrót" />
@@ -15,7 +15,6 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ListView layoutX="4.0" layoutY="175.0" prefHeight="200.0" prefWidth="200.0" />
       <Label layoutY="79.0" text="Rozegrane Quizy:">
          <font>
             <Font size="22.0" />
@@ -31,30 +30,35 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Label id="LiczbaQuiz" layoutX="174.0" layoutY="79.0" text="liczba">
+      <Label fx:id="LiczbaQuiz" layoutX="174.0" layoutY="79.0" text="liczba">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label id="SredniWynik" layoutX="126.0" layoutY="111.0" text="liczba">
+      <Label fx:id="SredniWynik" layoutX="126.0" layoutY="111.0" text="liczba">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Button onAction="#onWyloguj" layoutX="504.0" layoutY="353.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="96.0" text="Wyloguj" />
+      <Button layoutX="504.0" layoutY="353.0" mnemonicParsing="false" onAction="#onWyloguj" prefHeight="44.0" prefWidth="96.0" text="Wyloguj" />
       <PasswordField fx:id="Password1" layoutX="422.0" layoutY="79.0" />
       <PasswordField fx:id="Password2" layoutX="422.0" layoutY="112.0" />
-      <Button onAction="#onChangePasswordClick" layoutX="428.0" layoutY="153.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" text="Zmień hasło" />
+      <Button layoutX="428.0" layoutY="153.0" mnemonicParsing="false" onAction="#onChangePasswordClick" prefHeight="25.0" prefWidth="137.0" text="Zmień hasło" />
       <Label id="aaa" layoutX="324.0" layoutY="76.0" prefHeight="32.0" prefWidth="104.0" text="Stare hasło">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="SredniWynik" layoutX="324.0" layoutY="108.0" prefHeight="32.0" prefWidth="104.0" text="Nowe hasło">
+      <Label layoutX="324.0" layoutY="108.0" prefHeight="32.0" prefWidth="104.0" text="Nowe hasło">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="ErrorLabel" layoutX="422.0" layoutY="192.0" prefHeight="44.0" prefWidth="137.0" text="Label" />
+      <Label fx:id="ErrorLabel" layoutX="422.0" layoutY="192.0" prefHeight="44.0" prefWidth="137.0" text="" />
+      <AnchorPane layoutX="14.0" layoutY="178.0" prefHeight="200.0" prefWidth="200.0" >
+         <children>
+            <VBox fx:id="Quizy" prefHeight="200.0" prefWidth="600.0" />
+         </children></AnchorPane>
+
    </children>
 </AnchorPane>

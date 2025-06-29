@@ -95,9 +95,8 @@ public class MainController implements Initializable {
             Stage stage = SceneManager.getStageFrom(event.getSource());
 
             if (path.contains("id=Kategorie")) {
-                temp = "/org/example/quizez/category-view.fxml";
                 if (SessionController.getCurrentUserId() != null && !SessionController.isGuest()) {
-                    temp = "/org/example/quizez/createQuiz1-view.fxml";
+                    temp = "/org/example/quizez/category-view.fxml";
                 } else {
                     // guest or not logged in -> tell them to log in
                     boolean confirmed = showLoginRequiredAlert();
