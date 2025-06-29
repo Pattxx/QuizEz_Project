@@ -1,5 +1,7 @@
 package org.example.quizez;
-
+/**
+ * Quiz model class
+ */
 public class Quiz {
     private int id;
     private String name;
@@ -7,6 +9,7 @@ public class Quiz {
     private String difficulty;
     private int duration;
 
+    ///constructor
     public Quiz(int id, String name, String category, String difficulty, int duration) {
         this.id = id;
         this.name = name;
@@ -14,6 +17,8 @@ public class Quiz {
         this.difficulty = difficulty;
         this.duration = duration;
     }
+
+    ///getters and setters
 
     public int getId() {
         return id;

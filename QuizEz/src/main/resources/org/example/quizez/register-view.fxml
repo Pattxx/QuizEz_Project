@@ -5,15 +5,44 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.quizez.RegisterViewController">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.quizez.RegisterViewController"
+            prefWidth="1280" prefHeight="720"
+>
+
    <children>
-      <Label layoutX="249.0" layoutY="91.0" text="Stwórz nowe konto" />
-      <TextField fx:id="UsernameInputField" layoutX="227.0" layoutY="175.0" promptText="Nazwa użytkownika" />
-      <PasswordField fx:id="PasswordInputField" layoutX="227.0" layoutY="210.0" promptText="Hasło" />
-      <PasswordField fx:id="RepeatPasswordInputField" layoutX="227.0" layoutY="247.0" promptText="Potwórz hasło" />
-      <Button fx:id="CreateAccButton" layoutX="258.0" layoutY="312.0" mnemonicParsing="false" onAction="#onCreateAccButtonClick" text="Stwórz konto" />
-      <Button fx:id="GoBackButton" layoutX="27.0" layoutY="20.0" mnemonicParsing="false" onAction="#onGoBackAccClick" text="Cofnij" />
-      <Label fx:id="ErrorLabel" layoutX="255.0" layoutY="46.0" text="RegisterErrorInfo" textFill="RED" visible="false" />
+      <VBox alignment="CENTER" spacing="10"
+            AnchorPane.topAnchor="20.0"
+            AnchorPane.leftAnchor="0.0"
+            AnchorPane.rightAnchor="0.0"
+            AnchorPane.bottomAnchor="0.0">
+
+
+       <ImageView fitWidth="250" preserveRatio="true" >
+             <image>
+                 <Image url="@images/QuizEzLogo.png" />
+             </image>
+         </ImageView>
+         <Region prefHeight="20" />
+
+         <Label text="Stwórz nowe konto" style="-fx-font-size: 18px;"/>
+
+         <TextField fx:id="UsernameInputField" promptText="Nazwa użytkownika" maxWidth="300" />
+         <PasswordField fx:id="PasswordInputField" promptText="Hasło" maxWidth="300" />
+         <PasswordField fx:id="RepeatPasswordInputField" promptText="Potwórz hasło" maxWidth="300" />
+
+         <Button fx:id="CreateAccButton" mnemonicParsing="false" onAction="#onCreateAccButtonClick" text="Stwórz konto" maxWidth="150" />
+
+
+         <Label fx:id="ErrorLabel" text="RegisterErrorInfo" textFill="RED" visible="false" />
+      </VBox>
+      <Button fx:id="GoBackButton" mnemonicParsing="false" onAction="#onGoBackAccClick" text="Powrót" maxWidth="100" />
    </children>
 </AnchorPane>

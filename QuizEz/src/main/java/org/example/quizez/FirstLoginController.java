@@ -87,7 +87,11 @@ public class FirstLoginController {
             Stage stage = SceneManager.getStageFrom(event.getSource());
 
             ///now switch active scene to register-view.fxml
-            SceneManager.switchScene(stage, "/org/example/quizez/register-view.fxml", null);
+            SceneManager.switchScene(stage, "/org/example/quizez/register-view.fxml", null, loader -> {
+                RegisterViewController controller = loader.getController();
+                controller.initData("/org/example/quizez/first-login-view.fxml");
+            });
+
 
         }catch(IOException e){
             e.printStackTrace();

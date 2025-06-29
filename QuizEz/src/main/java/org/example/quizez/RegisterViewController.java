@@ -13,7 +13,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 public class RegisterViewController {
     @FXML private TextField UsernameInputField;
     @FXML private PasswordField PasswordInputField;
@@ -22,16 +24,18 @@ public class RegisterViewController {
     @FXML private Button GoBackButton;
     @FXML private Label ErrorLabel;
 
+    ///var used to return to prev scene
+    private String previousSceneFxml;
+
+    public void initData(String previousSceneFxml) {
+        this.previousSceneFxml = previousSceneFxml;
+    }
+
     public void onGoBackAccClick(ActionEvent event) {
 
         try{
-            ///Get stage from clicked button - needed as argument for next
             Stage stage = SceneManager.getStageFrom(event.getSource());
-
-            ///Now change scene to previous: login-view.fxml
-            SceneManager.switchScene(stage,"/org/example/quizez/login-view.fxml", null);
-
-
+            SceneManager.switchScene(stage, previousSceneFxml, null);
         } catch(IOException e){
             e.printStackTrace();
             Alert alert1 = new Alert(Alert.AlertType.ERROR);

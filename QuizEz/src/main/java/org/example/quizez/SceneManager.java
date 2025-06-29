@@ -20,12 +20,12 @@ public class SceneManager {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         if (title != null) {
             stage.setTitle("QuizEz");
         }
         stage.show();
     }
-
 
     ///version of switchScene that can expose data from previous controller to the next (method overload)
     public static void switchScene(Stage stage, String fxmlPath, String title, Consumer<FXMLLoader> loaderHandler) throws IOException {
@@ -38,6 +38,7 @@ public class SceneManager {
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         if (title != null) {
             stage.setTitle("QuizEz");
         }

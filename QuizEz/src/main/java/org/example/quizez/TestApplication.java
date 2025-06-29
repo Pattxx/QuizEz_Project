@@ -12,9 +12,13 @@ public class TestApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(TestApplication.class.getResource("main-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("QuizEz");
+
+        ///default size set to 1280x720
+        Scene scene = new Scene(fxmlLoader.load(), 1280,720);
         stage.setScene(scene);
+        stage.setTitle("QuizEz");
+        stage.setResizable(false);
+        //stage.setMaximized(true); ///leave space for max/min/exit
         stage.show();
     }
 
