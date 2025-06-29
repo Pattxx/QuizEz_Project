@@ -42,8 +42,32 @@ public class CreateQuizController2 {
     }
 
     @FXML
-    private void onSaveQuizButtonClick() {
-        //GrantAccess();
+    private void onSaveQuestionButtonClick() {
+        ///By default, quiz will be saved with only one question
+        ///question textfield must not be empty, answer (child) must not be empty
+        boolean validationSuccess = validateInputs();
+        if(validationSuccess){
+            SaveQuestionData();
+        }
+        else{
+            Alert errAlert = new Alert(Alert.AlertType.ERROR);
+            errAlert.setHeaderText(null);
+            errAlert.setContentText("Uzupełnij tekst pytania przed zapisem");
+            errAlert.showAndWait();
+        }
+
+    }
+
+
+    private boolean validateInputs(){
+        ///Method makes it possible to validte if textfields of questions and answers are not empty
+        String questionTextArea = QuestionTextArea.getText();
+        
+        if (QuestionTextArea.getText().isEmpty()){
+            return false;
+        }
+        else return true;
+
     }
 
     ///if answers limit is reached then block AddMoreButtons btn
