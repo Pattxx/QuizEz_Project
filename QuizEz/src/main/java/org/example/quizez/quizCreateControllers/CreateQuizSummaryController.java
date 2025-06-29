@@ -1,7 +1,11 @@
-package org.example.quizez;
+package org.example.quizez.quizCreateControllers;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.example.quizez.net.sqlitetuorial.Database;
+import org.example.quizez.managers.SceneManager;
+import org.example.quizez.sessionControllers.SessionController;
+import org.example.quizez.model.Answer;
+import org.example.quizez.model.Question;
+import org.example.quizez.managers.Database;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 

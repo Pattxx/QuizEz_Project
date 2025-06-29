@@ -1,7 +1,5 @@
-package org.example.quizez.net.sqlitetuorial;
+package org.example.quizez.managers;
 
-
-import org.example.quizez.Quiz;
 
 import java.sql.*;
 

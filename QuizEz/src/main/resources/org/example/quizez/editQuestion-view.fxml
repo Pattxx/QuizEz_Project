@@ -6,7 +6,7 @@
 <AnchorPane prefWidth="1280" prefHeight="720"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.quizez.EditQuestionController">
+            fx:controller="org.example.quizez.editControllers.EditQuestionController">
 
     <children>
         <StackPane AnchorPane.topAnchor="0.0"

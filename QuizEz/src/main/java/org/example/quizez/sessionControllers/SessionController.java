@@ -1,4 +1,4 @@
-package org.example.quizez;
+package org.example.quizez.sessionControllers;
 ///This class simulates local app data session
 public class SessionController {
     public static Integer currentUserId = null;

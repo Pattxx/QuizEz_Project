@@ -1,4 +1,4 @@
-package org.example.quizez;
+package org.example.quizez.editControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +10,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import org.example.quizez.net.sqlitetuorial.Database;
+import org.example.quizez.managers.SceneManager;
+import org.example.quizez.model.Answer;
+import org.example.quizez.model.Question;
+import org.example.quizez.managers.Database;
 
 import java.io.IOException;
 import java.sql.*;

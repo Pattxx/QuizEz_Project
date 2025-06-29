@@ -1,18 +1,19 @@
-package org.example.quizez;
+package org.example.quizez.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.quizez.net.sqlitetuorial.Database;
+import org.example.quizez.editControllers.EditQuestionController;
+import org.example.quizez.editControllers.EditQuizController;
+import org.example.quizez.managers.SceneManager;
+import org.example.quizez.model.Quiz;
+import org.example.quizez.managers.Database;
+import org.example.quizez.sessionControllers.SessionController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,9 +24,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;
-import javafx.fxml.FXMLLoader;
 
 public class UsersQuiz implements Initializable {
     @FXML private ListView<String> ListaQuizow;
@@ -37,7 +35,7 @@ public class UsersQuiz implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("Initialize called");
-        System.out.println("curr userID: "+SessionController.currentUserId);
+        System.out.println("curr userID: "+ SessionController.currentUserId);
         ///moved logic to method
         loadQuizzes();
 

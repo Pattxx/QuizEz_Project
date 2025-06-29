@@ -1,4 +1,4 @@
-package org.example.quizez;
+package org.example.quizez.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,8 +9,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.quizez.net.sqlitetuorial.Database;
+import org.example.quizez.managers.Database;
 import javafx.scene.control.*;
+import org.example.quizez.managers.SceneManager;
+import org.example.quizez.managers.StaticController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,7 +20,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;

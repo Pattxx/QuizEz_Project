@@ -1,4 +1,4 @@
-package org.example.quizez;
+package org.example.quizez.managers;
 /// Static class responsible for remembering
 public class StaticController {
     public static int questionAmount=1;

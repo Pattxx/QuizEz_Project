@@ -1,4 +1,4 @@
-package org.example.quizez;
+package org.example.quizez.quizCreateControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,12 +7,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-import org.example.quizez.net.sqlitetuorial.Database;
+import org.example.quizez.managers.SceneManager;
+import org.example.quizez.model.Answer;
+import org.example.quizez.model.Question;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 

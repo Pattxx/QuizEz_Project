@@ -1,4 +1,4 @@
-package org.example.quizez;
+package org.example.quizez.managers;
 import java.util.function.Consumer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

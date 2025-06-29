@@ -1,13 +1,12 @@
-package org.example.quizez;
+package org.example.quizez.loginControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import org.example.quizez.net.sqlitetuorial.Database;
+import org.example.quizez.managers.SceneManager;
+import org.example.quizez.sessionControllers.SessionController;
+import org.example.quizez.managers.Database;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,33 +14,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class FirstLoginController {
+public class LoginController {
     @FXML private TextField UsernameInputField;
     @FXML private PasswordField PasswordInputField;
     @FXML private Button LogInButton;
     @FXML private Button RegisterViewButton;
-    @FXML private CheckBox IsGuestCheckBox;
-    @FXML private Label ErrorLabel;
+    @FXML public Label ErrorLabel;
 
     @FXML
     private void handleLogin(ActionEvent event) {
-        ///login as quest
-        if (IsGuestCheckBox.isSelected()) {
-            SessionController.loginAsGuest();
-
-            Stage stage = SceneManager.getStageFrom(event.getSource());
-            try {
-                SceneManager.switchScene(stage, "/org/example/quizez/main-view.fxml", null);
-            } catch (IOException e) {
-                e.printStackTrace();
-                ErrorLabel.setVisible(true);
-                ErrorLabel.setText("Błąd podczas ładowania głównego widoku.");
-            }
-            return;
-        }
-
         ///normal log in
-        else {
             String username = UsernameInputField.getText();
             String password = PasswordInputField.getText();
 
@@ -58,8 +40,8 @@ public class FirstLoginController {
                 ///login successful, switch scene, get id
                 SessionController.login(userId, username);
                 try{
-                    Stage stage = SceneManager.getStageFrom(event.getSource());
-                    SceneManager.switchScene(stage,"/org/example/quizez/main-view.fxml", null );
+                  Stage stage = SceneManager.getStageFrom(event.getSource());
+                  SceneManager.switchScene(stage,"/org/example/quizez/main-view.fxml", null );
                 } catch(IOException e) {
                     e.printStackTrace();
                     ErrorLabel.setVisible(true);
@@ -68,10 +50,9 @@ public class FirstLoginController {
             }
             ///login failed
             else {
-                ErrorLabel.setVisible(true);
-                ErrorLabel.setText("Nieprawidłowa nazwa użytkownika lub hasło.");
+            ErrorLabel.setVisible(true);
+            ErrorLabel.setText("Nieprawidłowa nazwa użytkownika lub hasło.");
             }
-        }
     }
 
     public void onLogInButtonClick(ActionEvent event) {
@@ -86,12 +67,10 @@ public class FirstLoginController {
             ///get stage from button
             Stage stage = SceneManager.getStageFrom(event.getSource());
 
-            ///now switch active scene to register-view.fxml
             SceneManager.switchScene(stage, "/org/example/quizez/register-view.fxml", null, loader -> {
                 RegisterViewController controller = loader.getController();
-                controller.initData("/org/example/quizez/first-login-view.fxml");
+                controller.initData("/org/example/quizez/login-view.fxml");
             });
-
 
         }catch(IOException e){
             e.printStackTrace();
@@ -102,21 +81,20 @@ public class FirstLoginController {
         }
     }
 
-    public void onIsGuestCheckBoxClick(ActionEvent event) {
-        boolean isGuest = IsGuestCheckBox.isSelected();
+    public void onReturnClick(ActionEvent event) {
+        try {
+            ///get stage from button
+            Stage stage = SceneManager.getStageFrom(event.getSource());
+            ///now switch active scene
+            SceneManager.switchScene(stage, "/org/example/quizez/main-view.fxml", null);
 
-        ///Disable login fields when isGuest
-        UsernameInputField.setDisable(isGuest);
-        PasswordInputField.setDisable(isGuest);
-
-        ///Also clear fields when isGuest
-
-        if(isGuest){
-            UsernameInputField.clear();
-            PasswordInputField.clear();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setHeaderText(null);
+            alert1.setContentText("Scene change failed");
+            alert1.showAndWait();
         }
-
-        //handleLogin(event);
     }
 
     private Integer authenticateUser(String username, String password) {
@@ -145,6 +123,5 @@ public class FirstLoginController {
             return null; /// on error deny login
         }
     }
-
 
 }

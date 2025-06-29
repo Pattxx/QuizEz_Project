@@ -1,21 +1,21 @@
-package org.example.quizez;
+package org.example.quizez.controllers;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import org.example.quizez.net.sqlitetuorial.Database;
+import org.example.quizez.managers.Database;
+import org.example.quizez.managers.SceneManager;
+import org.example.quizez.managers.StaticController;
+import org.example.quizez.sessionControllers.SessionController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,9 +23,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.EventObject;
 import java.util.ResourceBundle;
 
 public class ProfilController  implements Initializable  {

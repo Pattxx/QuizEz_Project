@@ -1,21 +1,19 @@
-package org.example.quizez;
+package org.example.quizez.loginControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import org.example.quizez.net.sqlitetuorial.Database;
+import org.example.quizez.managers.SceneManager;
+import org.example.quizez.managers.Database;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 public class RegisterViewController {
     @FXML private TextField UsernameInputField;
     @FXML private PasswordField PasswordInputField;

@@ -1,4 +1,4 @@
-package org.example.quizez;
+package org.example.quizez.editControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,8 +7,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
-import org.example.quizez.Quiz;
-import org.example.quizez.net.sqlitetuorial.Database;
+import org.example.quizez.model.Quiz;
+import org.example.quizez.managers.Database;
 public class EditQuizController {
     @FXML private TextField quizNameField;
     @FXML private ComboBox<String> categoryComboBox;

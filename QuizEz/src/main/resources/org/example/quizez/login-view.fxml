@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Region?>
 <AnchorPane xmlns="http://javafx.com/javafx/17.0.6"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.quizez.LoginController"
+            fx:controller="org.example.quizez.loginControllers.LoginController"
             prefWidth="1280" prefHeight="720"
 >
 

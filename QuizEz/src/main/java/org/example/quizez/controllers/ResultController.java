@@ -1,11 +1,14 @@
-package org.example.quizez;
+package org.example.quizez.controllers;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import org.example.quizez.net.sqlitetuorial.Database;
+import org.example.quizez.managers.Database;
+import org.example.quizez.managers.SceneManager;
+import org.example.quizez.managers.StaticController;
+import org.example.quizez.sessionControllers.SessionController;
 
 import java.io.IOException;
 import java.net.URL;

@@ -1,4 +1,4 @@
-package org.example.quizez.net.sqlitetuorial;
+package org.example.quizez.managers;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 ///TODO MERGE INTO ONE MAIN FILE

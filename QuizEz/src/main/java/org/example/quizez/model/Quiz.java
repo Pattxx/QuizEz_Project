@@ -1,4 +1,4 @@
-package org.example.quizez;
+package org.example.quizez.model;
 /**
  * Quiz model class
  */

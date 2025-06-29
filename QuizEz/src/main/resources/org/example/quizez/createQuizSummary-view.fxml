@@ -11,7 +11,7 @@
 <AnchorPane prefWidth="1280" prefHeight="720"
             xmlns="http://javafx.com/javafx/17.0.6"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.quizez.CreateQuizSummaryController">
+            fx:controller="org.example.quizez.quizCreateControllers.CreateQuizSummaryController">
 
    <children>
       <StackPane AnchorPane.topAnchor="0.0"

@@ -1,4 +1,4 @@
-package org.example.quizez;
+package org.example.quizez.controllers;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,7 +7,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.example.quizez.net.sqlitetuorial.Database;
+import org.example.quizez.managers.Database;
+import org.example.quizez.managers.SceneManager;
+import org.example.quizez.managers.StaticController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -56,7 +58,7 @@ public class QuestionController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        ///ustawienie Timera quizu
+        ///setting quiz timer
         TimerTask task=new TimerTask() {
             int count=temp;
             @Override
