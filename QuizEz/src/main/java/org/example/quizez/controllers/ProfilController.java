@@ -38,21 +38,26 @@ public class ProfilController  implements Initializable  {
     public void initialize(URL url, ResourceBundle rb) {
         float liczQuiz=0;
         float srednia = 0;
-        String DbUsernameCheckQuery = "Select quizzes.title,quizzes.category,quiz_results.percentage,quiz_results.date_taken FROM quiz_results JOIN quizzes ON quiz_results.quiz_id = quizzes.id WHERE creator_id = ?";
+        String DbUsernameCheckQuery = "Select quizzes.title,quizzes.category,quiz_results.percentage,quiz_results.date_taken " +
+                "FROM quiz_results JOIN quizzes ON quiz_results.quiz_id = quizzes.id WHERE creator_id = ?";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt =conn.prepareStatement(DbUsernameCheckQuery)){
              stmt.setInt(1, SessionController.currentUserId);
              ResultSet rs = stmt.executeQuery();
             HBox temp = new HBox();
-            temp.getChildren().addAll(new Label("Tytuł"),new Label("|"), new Label("Kategoria"),new Label("|"), new Label("Wynik"),new Label("|"),new Label("data"));
+            temp.getChildren().addAll(new Label("Tytuł"),new Label("|"), new Label("Kategoria"),
+                    new Label("|"), new Label("Wynik"),new Label("|"),new Label("data"));
             Quizy.getChildren().add(temp);
             /// loops through every element iun table and adds it to correct VBox
 
             while(rs.next()) {
                 liczQuiz++;
                 HBox record = new HBox();
-                record.getChildren().addAll(new Label(rs.getString("title")),new Label("|"), new Label(rs.getString("category")),new Label("|"), new Label((String.format("%.00f", rs.getDouble("percentage"))+"%")),new Label("|"), new Label(rs.getString("date_taken")));
+                record.getChildren().addAll(new Label(rs.getString("title")),new Label("|"),
+                        new Label(rs.getString("category")),new Label("|"),
+                        new Label((String.format("%.00f", rs.getDouble("percentage"))+"%")),
+                        new Label("|"), new Label(rs.getString("date_taken")));
                 Quizy.getChildren().add(record);
                 srednia+=Float.valueOf(rs.getString("percentage"));
             }

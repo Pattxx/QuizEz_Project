@@ -46,6 +46,7 @@ public class QuestionController implements Initializable {
 
     /// code activates on intialization to make sure first question is loaded
     public void initialize(URL location, ResourceBundle resources) {
+        StaticController.correctAnswers=0;
         String questionQuery = "SELECT title, time_limit FROM quizzes WHERE id = ?";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(questionQuery)) {

@@ -49,7 +49,6 @@ public class RegisterViewController {
         handleAccCreation();
     }
 
-
     private void handleAccCreation(){
         String newUsername = UsernameInputField.getText();
         String newPassword = PasswordInputField.getText();

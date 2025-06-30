@@ -57,7 +57,8 @@ public class CategoryController implements Initializable {
                 ResultSet rs = stmt.executeQuery();
                     ///adds header in every category
                 HBox temp = new HBox();
-                temp.getChildren().addAll(new Label("Tytuł"),new Label("|"),new Label("Id Twórcy") , new Label("|"),new Label("Poziom trudności") );
+                temp.getChildren().addAll(new Label("Tytuł"),new Label("|"),new Label("Id Twórcy") , new Label("|"),
+                        new Label("Poziom trudności") );
                 entry.getValue().getChildren().add(temp);
                 /// loops through every element iun table and adds it to correct VBox
                 while(rs.next()) {
@@ -83,7 +84,8 @@ public class CategoryController implements Initializable {
                             }
                         }
                     });
-                    record.getChildren().addAll(new Label(rs.getString("title")), new Label("|"), new Label(rs.getString("difficulty")), new Label("|"), new Label(rs.getString("creator_id")));
+                    record.getChildren().addAll(new Label(rs.getString("title")), new Label("|"),
+                            new Label(rs.getString("difficulty")), new Label("|"), new Label(rs.getString("creator_id")));
                     entry.getValue().getChildren().add(record);
                 }
             }
