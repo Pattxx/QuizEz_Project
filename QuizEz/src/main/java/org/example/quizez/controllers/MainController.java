@@ -79,7 +79,7 @@ public class MainController implements Initializable {
 
         try {
             Stage stage = SceneManager.getStageFrom(Kategorie);
-            SceneManager.switchScene(stage, "/org/example/quizez/login-view.fxml", null);
+            SceneManager.switchScene(stage, "/org/example/quizez/first-login-view.fxml", null);
         } catch (IOException e) {
             e.printStackTrace();
             Alert alert1 = new Alert(Alert.AlertType.ERROR);

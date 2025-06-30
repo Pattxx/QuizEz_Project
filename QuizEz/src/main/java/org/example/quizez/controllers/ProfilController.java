@@ -114,7 +114,7 @@ public class ProfilController  implements Initializable  {
             Stage stage = SceneManager.getStageFrom(event.getSource());
 
             ///Now change scene to previous: login-view.fxml
-            SceneManager.switchScene(stage,"/org/example/quizez/main-view.fxml", null);
+            SceneManager.switchScene(stage,"/org/example/quizez/first-login-view.fxml", null);
         } catch(IOException e){
             e.printStackTrace();
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
