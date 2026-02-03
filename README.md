@@ -3,15 +3,10 @@ Project made as an assignment (Technical Training 1)
 
 Opis projektu na zaliczenie z przedmiotu „Szkolenie Techniczne 1”.
 
-Grupa: IID-P/2023 - SL01
 
 Temat projektu: Aplikacja desktopowa przeznaczona do quizów „QuizEZ”.
 
-Projekt wykonywany w zespole dwuosobowym: 
-
-Adrian Kostyra w69983
-
-Patrycja Weselak w70701
+Projekt wykonywany w zespole dwuosobowym
 
 Opis aplikacji:
 
